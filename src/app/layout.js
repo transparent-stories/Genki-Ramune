@@ -1,3 +1,5 @@
+import '../app/globals.css';
+
 export const metadata = {
   title: 'Genki Ramune',
   description: 'Refreshing soda drinks for all ages!',
