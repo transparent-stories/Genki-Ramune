@@ -7,7 +7,7 @@ export default function Home() {
       <p className="text-gray-600 mt-2">Refreshing drinks for every moment.</p>
 
       <div>
-        <ProductList />
+        <ProductList tag="16" />
       </div>
     </>
   );

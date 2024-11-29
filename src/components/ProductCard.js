@@ -14,12 +14,8 @@ const ProductCard = ({ product }) => {
 
     return (
         <motion.div
-            className="relative rounded-2xl p-4 overflow-hidden flex flex-col items-center justify-center"
+            className="relative rounded-2xl p-4 overflow-hidden flex flex-col items-center justify-center keen-slider__slide"
             style={{ backgroundColor: secondaryColor, width: '300px', height: '400px' }}
-            whileHover={{
-                scale: 1.05,
-                transition: { type: 'spring', stiffness: 250, damping: 20 },
-            }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
         >
@@ -44,9 +40,9 @@ const ProductCard = ({ product }) => {
                 }}
                 initial={{ scale: 1 }}
                 animate={{
-                    scale: isHovered ? 0.9 : 1,
+                    opacity: isHovered ? 0 : 1,
                 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
             ></motion.div>
 
             {/* Product Image */}
@@ -55,9 +51,9 @@ const ProductCard = ({ product }) => {
                 alt={product.name}
                 className="w-64 h-64 object-contain z-10"
                 animate={{
-                    scale: isHovered ? 1.1 : 1,
+                    opacity: isHovered ? 0 : 1,
                 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
             />
 
             {/* Product Name */}
@@ -77,7 +73,7 @@ const ProductCard = ({ product }) => {
                     paddingBottom: isHovered ? "40px" : "0px",
                     paddingTop: isHovered ? "100px" : "0px"
                 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
                 {/* Product Name */}
                 <h3 className="text-2xl">{product.name}</h3>
