@@ -16,13 +16,13 @@ export const ProductProvider = ({ children }) => {
         staleTime: 1000 * 60 * 5,
     });
 
-    const fetchSingleProduct = (productId) => useQuery({
-        queryKey: ['singleProduct', productId],
-        queryFn: () => fetchFromApi(`/products/${productId}`),
-        enabled: !!productId,
-        refetchOnWindowFocus: true,
-        staleTime: 1000 * 60 * 5,
-    });
+    // const fetchSingleProduct = (productId) => useQuery({
+    //     queryKey: ['singleProduct', productId],
+    //     queryFn: () => fetchFromApi(`/products/${productId}`),
+    //     enabled: !!productId,
+    //     refetchOnWindowFocus: true,
+    //     staleTime: 1000 * 60 * 5,
+    // });
 
     return (
         <ProductContext.Provider
@@ -30,7 +30,7 @@ export const ProductProvider = ({ children }) => {
                 allProducts,
                 isLoading,
                 error,
-                fetchSingleProduct,
+                // fetchSingleProduct,
                 refetch,
                 setQueryParams
             }}
