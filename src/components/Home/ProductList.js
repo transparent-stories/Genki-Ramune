@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useProducts } from '../context/ProductContext';
+import { useProducts } from '../../context/ProductContext';
 import { useKeenSlider } from "keen-slider/react";
 import 'keen-slider/keen-slider.min.css';
-import ProductCard from './ProductCard';
-import { EmptyState, ErrorState, LoadingState } from './States';
-import PaginatedDots from './PaginatedDots';
-import SliderArrows from './SliderArrows';
+import ProductCard from '../ProductCard';
+import { EmptyState, ErrorState, LoadingState } from '../Global/States';
+import PaginatedDots from '../Global/PaginatedDots';
+import SliderArrows from '../Global/SliderArrows';
 
 const ProductList = (filterParams) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();

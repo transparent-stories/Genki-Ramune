@@ -11,7 +11,7 @@ export const ProductProvider = ({ children }) => {
 
     const { data: allProducts, isLoading, error, refetch } = useQuery({
         queryKey: ['allProducts', queryParams],
-        queryFn: () => fetchFromApi('/products', queryParams),
+        queryFn: () => fetchFromApi('/products', queryParams, 'wc'),
         refetchOnWindowFocus: true,
         staleTime: 1000 * 60 * 5,
     });
