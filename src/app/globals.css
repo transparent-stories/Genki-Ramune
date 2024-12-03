@@ -9,7 +9,7 @@
   src: url('/fonts/sentient-regular.woff2') format('woff2'),
        url('/fonts/sentient-regular.woff') format('woff'),
        url('/fonts/sentient-regular.ttf') format('truetype');
-  font-weight: bolder;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
