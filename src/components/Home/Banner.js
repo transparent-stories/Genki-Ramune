@@ -1,37 +1,36 @@
 import Link from "next/link";
 import React from "react";
+import FillButton from "../Global/Buttons/FillButton";
 
-const Banner = ({ heading, text, button, desktopImage, mobileImage, url }) => {
+const Banner = ({
+    heading = "BlissFul Blueberry",
+    text = "Soda that’s always a surprise",
+    button = "View Now",
+    desktopImage,
+    mobileImage,
+    url = "#" }) => {
     return (
         <div>
             <Link href="/about">
-                <section className="m-0 p-0 relative bg-cover bg-center bg-no-repeat">
+                <section className="relative bg-cover bg-center sm:aspect-[16/8] overflow-hidden">
                     <picture>
                         <source srcSet={desktopImage} media="(min-width: 768px)" />
                         <img
                             src={mobileImage}
                             alt={heading}
-                            className="w-full h-full object-cover"
+                            className="w-full h-auto"
                         />
                     </picture>
-                    {/* <div className="absolute top-0 mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-                <div className="max-w-xl text-left">
-                    <h1 className="text-3xl font-extrabold sm:text-5xl">{heading}</h1>
-
-                    <p className="mt-4 max-w-lg sm:text-xl">{text}</p>
-
-                    <div className="mt-8 flex flex-wrap gap-4 text-center">
-                        <a
-                            href={url}
-                            className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
-                        >
-                            {button}
-                        </a>
+                    <div className="absolute inset-0 flex items-end lg:items-center px-8 py-8 lg:p-32 lg:w-1/2">
+                        <div className="max-w-lg flex flex-col gap-4" data-aos="zoom-in-right">
+                            <h1 className="text-purple text-4xl font-bold sm:text-8xl">{heading}</h1>
+                            <p className="mt-4 text-lg text-purple">{text}</p>
+                            <FillButton text={button} color="bg-white" text_color="text-purple" url={url} />
+                        </div>
                     </div>
-                </div>
-            </div> */}
                 </section>
             </Link>
+
         </div>
 
     );

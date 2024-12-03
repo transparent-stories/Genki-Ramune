@@ -8,8 +8,10 @@ import ProductCard from '../ProductCard';
 import { EmptyState, ErrorState, LoadingState } from '../Global/States';
 import PaginatedDots from '../Global/PaginatedDots';
 import SliderArrows from '../Global/SliderArrows';
+import 'animate.css'
+import FillButton from '../Global/Buttons/FillButton';
 
-const ProductList = (filterParams) => {
+const ProductList = ({ title, subtitle, filterParams }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const ProductList = (filterParams) => {
             loop: true,
             slides: {
                 origin: "center",
-                perView: 5,
+                perView: 4.5,
                 spacing: 25,
             },
             created() {
@@ -92,37 +94,46 @@ const ProductList = (filterParams) => {
     if (!allProducts || allProducts.length === 0) return <EmptyState />
 
     return (
-        <div className="product-list">
-            <h2 className="text-2xl font-bold mb-4">Products</h2>
-            <div className="navigation-wrapper">
-                <div ref={sliderRef} className="keen-slider">
-                    {allProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+        <>
+            <div className="product-list py-20 text-center">
+                <div className='mb-10'>
+                    <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{title}</h1>
+                    <p className="mb-4" data-aos="fade-in-left">{subtitle}</p>
                 </div>
-                {loaded && instanceRef.current && (
-                    <>
-                        <SliderArrows
-                            direction='left'
-                            onClick={(e) =>
-                                e.stopPropagation() || instanceRef.current?.prev()
-                            }
-                            disabled={currentSlide === 0}
-                        />
-                        <SliderArrows
-                            onClick={(e) =>
-                                e.stopPropagation() || instanceRef.current?.next()
-                            }
-                            disabled={
-                                currentSlide ===
-                                instanceRef.current.track.details.slides.length - 1
-                            }
-                        />
-                    </>
-                )}
+                <div className="navigation-wrapper mb-5">
+                    <div ref={sliderRef} className="keen-slider">
+                        {allProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                    {loaded && instanceRef.current && (
+                        <>
+                            <SliderArrows
+                                direction='left'
+                                onClick={(e) =>
+                                    e.stopPropagation() || instanceRef.current?.prev()
+                                }
+                                disabled={currentSlide === 0}
+                            />
+                            <SliderArrows
+                                onClick={(e) =>
+                                    e.stopPropagation() || instanceRef.current?.next()
+                                }
+                                disabled={
+                                    currentSlide ===
+                                    instanceRef.current.track.details.slides.length - 1
+                                }
+                            />
+                        </>
+                    )}
+                </div>
+                {loaded && instanceRef.current && <PaginatedDots currentSlide={currentSlide} instanceRef={instanceRef} />}
+                <div className='flex justify-center items-center'>
+                    <FillButton text="Shop All Flavours" color="bg-green" text_color="text-white" url="/about" />
+                </div>
             </div>
-            {loaded && instanceRef.current && <PaginatedDots currentSlide={currentSlide} instanceRef={instanceRef} />}
-        </div>
+        </>
+
     );
 };
 

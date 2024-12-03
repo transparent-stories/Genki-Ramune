@@ -2,12 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap');
+
+@font-face {
+  font-family: 'Sentient';
+  src: url('/fonts/sentient-regular.woff2') format('woff2'),
+       url('/fonts/sentient-regular.woff') format('woff'),
+       url('/fonts/sentient-regular.ttf') format('truetype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
 /* Add custom global styles if needed */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Sora', sans-serif;
+  font-weight: lighter;
+  font-size: large;
   background-color: #f9f9f9;
   margin: 0;
   padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Sentient', sans-serif; /* Use custom Sentient font for headings */
 }
 
 .keen-slider {
@@ -16,10 +33,15 @@ body {
     position: relative; /* Ensures proper positioning */
 }
 
+.keen-slider:not([data-keen-slider-disabled]) {
+  overflow-y: visible !important;
+}
+
 .keen-slider__slide {
     flex: 0 0 auto; /* Prevents slides from shrinking or growing */
     width: calc(100% / 5); /* Matches perView (for desktop, 5 slides) */
     box-sizing: border-box; /* Includes padding and border in the width */
+    overflow-y: visible;
 }
 
 .navigation-wrapper {

@@ -1,23 +1,39 @@
 'use client';
-
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import DOMPurify from 'dompurify';
 
 const ProductCard = ({ product }) => {
-    const primaryColor = product.meta_data.find((meta) => meta.key === 'primary_color')?.value || '#ccc';
-    const secondaryColor = product.meta_data.find((meta) => meta.key === 'secondary_color')?.value || '#f5f5f5';
-    const secondaryImage = product.images[1]?.src || 'https://placehold.co/600x800/orange/white';
-    const primaryImage = product.images[0]?.src || 'https://placehold.co/600x800/orange/white';
+
+    const { primary_color: primaryColor = '#ccc', secondary_color: secondaryColor = '#f5f5f5' } = product?.meta_data?.reduce((acc, meta) => {
+        acc[meta.key] = meta.value;
+        return acc;
+    }, {});
+
+    const secondaryImage = product?.images[1]?.src || 'https://placehold.co/600x800/orange/white';
+    const primaryImage = product?.images[0]?.src || 'https://placehold.co/600x800/orange/white';
 
     const [isHovered, setIsHovered] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const handleResize = useCallback(() => {
+        setIsMobile(window.innerWidth <= 768);
+    }, []);
+
+    useEffect(() => {
+        // const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <motion.div
             className="relative rounded-2xl p-4 overflow-hidden flex flex-col items-center justify-center keen-slider__slide"
-            style={{ backgroundColor: secondaryColor, width: '300px', height: '400px' }}
+            style={{ backgroundColor: secondaryColor, width: 'auto', aspectRatio: 4 / 6 }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
+        // data-aos="zoom-in-up"
         >
             {/* Background Change on Hover */}
             <motion.div
@@ -29,12 +45,10 @@ const ProductCard = ({ product }) => {
 
             {/* Circle */}
             <motion.div
-                className="absolute"
+                className="absolute sm:w-36 sm:h-36 w-32 h-32"
                 style={{
                     backgroundColor: primaryColor,
                     borderRadius: '50%',
-                    width: '200px',
-                    height: '200px',
                     top: '25%',
                     zIndex: 2,
                 }}
@@ -49,7 +63,7 @@ const ProductCard = ({ product }) => {
             <motion.img
                 src={primaryImage}
                 alt={product.name}
-                className="w-64 h-64 object-contain z-10"
+                className="sm:w-64 sm:h-64 w-44 h-44 object-contain z-10 lg:mt-[-20%] mt-[-30%]"
                 animate={{
                     opacity: isHovered ? 0 : 1,
                 }}
@@ -70,8 +84,8 @@ const ProductCard = ({ product }) => {
                     height: isHovered ? '80%' : '100%',
                     opacity: isHovered ? 1 : 0.9,
                     backgroundColor: isHovered ? secondaryColor : 'rgba(0, 0, 0, 0)',
-                    paddingBottom: isHovered ? "40px" : "0px",
-                    paddingTop: isHovered ? "100px" : "0px"
+                    paddingBottom: isHovered ? "3vw" : "20px",
+                    paddingTop: isHovered ? "80%" : "0px"
                 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
@@ -81,8 +95,15 @@ const ProductCard = ({ product }) => {
                 {/* Short Description and Button */}
                 <motion.div
                     className="text-center flex flex-col items-center"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: isHovered ? 1 : 0 }}
+                    initial={{
+                        opacity: isMobile ? 1 : 0,
+                        y: 10,
+                        height: isMobile ? 'auto' : '0px'
+                    }}
+                    animate={{
+                        opacity: isMobile || isHovered ? 1 : 0,
+                        height: isMobile || isHovered ? 'auto' : '0px'
+                    }}
                     transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
                     {/* Short Description */}
@@ -109,4 +130,23 @@ const ProductCard = ({ product }) => {
     );
 };
 
-export default ProductCard;
+ProductCard.propTypes = {
+    product: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        permalink: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(
+            PropTypes.shape({
+                src: PropTypes.string.isRequired,
+            })
+        ).isRequired,
+        meta_data: PropTypes.arrayOf(
+            PropTypes.shape({
+                key: PropTypes.string.isRequired,
+                value: PropTypes.string.isRequired,
+            })
+        ),
+        short_description: PropTypes.string,
+    }).isRequired,
+};
+
+export default React.memo(ProductCard);

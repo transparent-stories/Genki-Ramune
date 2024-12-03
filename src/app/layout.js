@@ -1,14 +1,28 @@
+'use client';
+import { useEffect } from 'react';
 import '../app/globals.css';
 import Providers from './providers'; // Import the new client component
-
-export const metadata = {
-  title: 'Genki Ramune',
-  description: 'Refreshing soda drinks for all ages!',
-};
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    })
+  }, [])
+
   return (
     <html lang="en">
+      <head>
+        {/* Add Google Font (Sora) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      </head>
       <body>
         <Providers>
           <header className="p-4 bg-blue-500 text-white">
