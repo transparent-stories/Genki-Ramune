@@ -11,6 +11,7 @@
        url('/fonts/sentient-regular.ttf') format('truetype');
   font-weight: bolder;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Add custom global styles if needed */
