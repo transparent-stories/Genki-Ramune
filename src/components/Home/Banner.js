@@ -23,7 +23,7 @@ const Banner = ({
                     </picture>
                     <div className="absolute inset-0 flex items-end lg:items-center px-8 py-8 lg:p-32 lg:w-1/2">
                         <div className="max-w-lg flex flex-col gap-4" data-aos="zoom-in-right">
-                            <h1 className="text-purple text-4xl font-bold sm:text-8xl">{heading}</h1>
+                            <h1 className="text-purple text-4xl sm:text-8xl">{heading}</h1>
                             <p className="mt-4 text-lg text-purple">{text}</p>
                             <FillButton text={button} color="bg-white" text_color="text-purple" url={url} />
                         </div>
