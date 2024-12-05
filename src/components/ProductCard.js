@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import DOMPurify from 'dompurify';
+import { useRouter } from 'next/navigation';
 
 const ProductCard = ({ product }) => {
+    const router = useRouter();
 
     const { primary_color: primaryColor = '#ccc', secondary_color: secondaryColor = '#f5f5f5' } = product?.meta_data?.reduce((acc, meta) => {
         acc[meta.key] = meta.value;
@@ -16,12 +18,15 @@ const ProductCard = ({ product }) => {
 
     const [isHovered, setIsHovered] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+
     const handleResize = useCallback(() => {
         setIsMobile(window.innerWidth <= 768);
     }, []);
+    const handleClick = () => {
+        router.push(`/product/${product.slug}`);
+    };
 
     useEffect(() => {
-        // const handleResize = () => setIsMobile(window.innerWidth <= 768);
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
@@ -29,12 +34,14 @@ const ProductCard = ({ product }) => {
 
     return (
         <motion.div
-            className="relative rounded-2xl p-4 overflow-hidden flex flex-col items-center justify-center keen-slider__slide"
+            className="relative rounded-2xl p-4 overflow-hidden flex flex-col items-center cursor-pointer justify-center keen-slider__slide"
             style={{ backgroundColor: secondaryColor, width: 'auto', aspectRatio: 4 / 6 }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
+            onClick={handleClick}
         // data-aos="zoom-in-up"
         >
+
             {/* Background Change on Hover */}
             <motion.div
                 className="absolute inset-0 bg-cover bg-center"
@@ -90,7 +97,7 @@ const ProductCard = ({ product }) => {
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
                 {/* Product Name */}
-                <h3 className="text-2xl">{product.name}</h3>
+                <h3 className="text-l sm:text-2xl">{product.name}</h3>
 
                 {/* Short Description and Button */}
                 <motion.div
@@ -115,15 +122,15 @@ const ProductCard = ({ product }) => {
                     ></div>
 
                     {/* View Now Button */}
-                    <motion.a
-                        href={product.permalink}
+                    <motion.div
+                        // href={`/product/${product.slug}`}
                         className="relative text-black text-sm mb-2 font-light transition-colors duration-300 hover:text-black underline underline-offset-4"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.3 }}
                     >
                         View Now
-                    </motion.a>
+                    </motion.div>
                 </motion.div>
             </motion.div>
         </motion.div>
@@ -134,6 +141,7 @@ ProductCard.propTypes = {
     product: PropTypes.shape({
         name: PropTypes.string.isRequired,
         permalink: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
         images: PropTypes.arrayOf(
             PropTypes.shape({
                 src: PropTypes.string.isRequired,

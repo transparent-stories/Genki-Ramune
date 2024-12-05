@@ -1,6 +1,11 @@
 import { AOSInit } from '@/utils/aos';
 import '../app/globals.css';
-import Providers from './providers'; // Import the new client component
+import Providers from './providers';
+
+export const metadata = {
+  title: 'Genki Ramune',
+  description: 'Refreshing soda drinks for all ages!',
+};
 
 export default function RootLayout({ children }) {
 
@@ -13,7 +18,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap"
           rel="stylesheet"
         />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet" />
       </head>
       <body>
         <Providers>

@@ -42,13 +42,15 @@ const ProductList = ({ title, subtitle, filterParams }) => {
             breakpoints: {
                 "(max-width: 1024px)": {
                     slides: {
-                        perView: 4,
+                        origin: "center",
+                        perView: 3.5,
                         spacing: 15,
                     },
                 },
                 "(max-width: 768px)": {
                     slides: {
-                        perView: 2,
+                        origin: "center",
+                        perView: 1.5,
                         spacing: 15,
                     },
                 },
@@ -89,13 +91,13 @@ const ProductList = ({ title, subtitle, filterParams }) => {
         ]
     );
 
-    if (isLoading) return <LoadingState />
-    if (error) return <ErrorState />
-    if (!allProducts || allProducts.length === 0) return <EmptyState />
+    if (isLoading) return <LoadingState height="50vh" />
+    if (error) return <ErrorState message="Error fetching product." height="50vh" />
+    if (!allProducts || allProducts.length === 0) return <EmptyState message="No Products Found" height="50vh" />
 
     return (
         <>
-            <div className="product-list py-20 text-center">
+            <div className="product-list py-20 px-7 text-center">
                 <div className='mb-10'>
                     <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{title}</h1>
                     <p className="mb-4" data-aos="fade-in-left">{subtitle}</p>

@@ -1,14 +1,16 @@
 'use client';
-
 import React, { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
 import VideoCard from './VideoCard';
 import { EmptyState } from './Global/States';
 
-const animation = { duration: 5000, easing: (t) => t }
-
 const VideoList = ({ videos }) => {
+    const [activeVideo, setActiveVideo] = useState(null); // Tracks the active video index
+
+    const handlePlay = (idx) => {
+        setActiveVideo(idx); // Update active video when a video starts playing
+    };
 
     const [sliderRef] = useKeenSlider(
         {
@@ -28,11 +30,11 @@ const VideoList = ({ videos }) => {
                 },
                 "(max-width: 768px)": {
                     slides: {
-                        perView: 2,
+                        perView: 1.5,
                         spacing: 15,
                     },
                 },
-            }
+            },
         },
         [
             (slider) => {
@@ -66,14 +68,19 @@ const VideoList = ({ videos }) => {
         ]
     );
 
-    if (!videos || videos.length === 0) return <EmptyState height='100px' message='No Videos Found' />
+    if (!videos || videos.length === 0) return <EmptyState height="100px" message="No Videos Found" />;
 
     return (
-
-        <div className='navigation-wrapper'>
+        <div className="navigation-wrapper">
             <div ref={sliderRef} className="keen-slider">
                 {videos.map((item, idx) => (
-                    <VideoCard key={idx} idx={idx} videoSrc={item?.video} />
+                    <VideoCard
+                        key={idx}
+                        idx={idx}
+                        videoSrc={item?.video}
+                        activeVideo={activeVideo} // Pass active video index
+                        onAudioPlay={handlePlay} // Pass callback to update active video
+                    />
                 ))}
             </div>
         </div>

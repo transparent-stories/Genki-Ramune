@@ -5,18 +5,25 @@ import { fetchFromApi } from "@/utils/api";
 import BrandMetrics from "@/components/Home/BrandMetrics";
 import VideoFeed from "@/components/Home/VideoFeed";
 import defaults from "@/utils/defaults";
+import BlogSection from "@/components/Home/BlogSection";
 
-export const metadata = {
-  title: 'Genki Ramune',
-  description: 'Refreshing soda drinks for all ages!',
-};
+async function getPageData(queryParams, id = "43") {
+  try {
+    // Fetch page data from WP API
+    const pageData = await fetchFromApi(`/pages/${id}`, queryParams, "wp");
+    return pageData;
+  } catch (error) {
+    console.error(`Error fetching page data`, error);
+    throw new Error("page not found");
+  }
+}
 
 export default async function Home() {
-  const id = "43"; // Default to ID 43
-  const queryParams = { id, _fields: "acf", acf_format: "standard" };
+  // const id = "43"; // Default to ID 43
+  const queryParams = { _fields: "acf", acf_format: "standard", status: "publish" };
 
   try {
-    const pageData = await fetchFromApi(`/pages/${id}`, queryParams, "wp");
+    const pageData = await getPageData(queryParams);
 
     // Validate `acf` data existence
     if (!pageData?.acf) {
@@ -67,12 +74,17 @@ export default async function Home() {
       videos: Array.isArray(videos_feed) ? videos_feed : [],
     };
 
+    const blogSectionProps = {
+      queryParams: { orderBy: "date", per_page: 3, _embed: "" }
+    }
+
     return (
       <>
         <Banner {...bannerProps} />
         <ProductList {...productListProps} />
         <BrandMetrics {...brandMetricsProps} />
         <VideoFeed {...videoFeedProps} />
+        <BlogSection {...blogSectionProps} />
       </>
     );
   } catch (error) {

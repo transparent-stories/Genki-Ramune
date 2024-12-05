@@ -1,29 +1,33 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
-const VideoCard = ({ videoSrc, idx }) => {
+const VideoCard = ({ videoSrc, idx, activeVideo, onAudioPlay }) => {
     const videoRef = useRef(null);
     const [muted, setMuted] = useState(true);
 
     const toggleMute = () => {
         const newMutedState = !muted;
         setMuted(newMutedState);
+        onAudioPlay(idx)
         if (videoRef.current) {
             videoRef.current.muted = newMutedState;
         }
     };
 
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = idx !== activeVideo;
+            setMuted(idx !== activeVideo);
+        }
+    }, [activeVideo, idx]);
+
     return (
         <div
             className="relative video-card border-4 m-4 border-red keen-slider__slide"
             data-aos="fade-in-left"
-            style={{
-                marginBlockEnd: `${idx % 2 === 0 ? "0px" : "20px"}`,
-                marginBlockStart: `${idx % 2 !== 0 ? "-20px" : "0px"}`,
-            }}
         >
             <video
                 ref={videoRef}
@@ -54,6 +58,8 @@ const VideoCard = ({ videoSrc, idx }) => {
 VideoCard.propTypes = {
     videoSrc: PropTypes.string.isRequired,
     idx: PropTypes.number.isRequired,
+    activeVideo: PropTypes.number, // Index of the currently active video
+    onAudioPlay: PropTypes.func, // Callback to notify parent of play event
 };
 
 export default VideoCard;
