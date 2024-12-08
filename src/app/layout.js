@@ -1,6 +1,7 @@
 import { AOSInit } from '@/utils/aos';
 import '../app/globals.css';
 import Providers from './providers';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Genki Ramune',
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <header className="p-4 bg-blue-500 text-white">
-            <a href='/'>Genki Ramune</a>
+            <Link href='/'>Genki Ramune</Link>
           </header>
           <main>{children}</main>
           <footer className="p-4 bg-gray-800 text-white">

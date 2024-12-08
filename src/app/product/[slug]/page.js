@@ -3,6 +3,7 @@ import { React, cache } from 'react';
 import Gallery from '@/components/Product/page/Gallery';
 import Description from '@/components/Product/page/Description';
 import { ErrorState } from '@/components/Global/States';
+import Link from 'next/link';
 
 // Server-side function to fetch product data
 const getProductData = cache(async (slug) => {
@@ -97,7 +98,7 @@ const ProductPage = async ({ params }) => {
             <div className="container mx-auto p-4 text-center">
                 <h1 className="text-2xl font-bold">Product Not Found</h1>
                 <p className="mt-2">The product you are looking for does not exist.</p>
-                <a href="/" className="text-blue-500 underline">Return to Home</a>
+                <Link href="/" className="text-blue-500 underline">Return to Home</Link>
             </div>
         );
     }
