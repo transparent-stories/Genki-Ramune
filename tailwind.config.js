@@ -16,6 +16,10 @@ module.exports = {
         purple: '#5A31F4',
         black: '#000000'
       },
+      fontFamily: {
+        sora: ["var(--font-sora)"],
+        sentient: ["var(--font-sentient)"]
+      }
     },
   },
   plugins: [],

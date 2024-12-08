@@ -2,6 +2,15 @@ import { AOSInit } from '@/utils/aos';
 import '../app/globals.css';
 import Providers from './providers';
 import Link from 'next/link';
+import { Sora } from 'next/font/google'
+import _customFont from '@/app/font'
+
+const _sora = Sora({
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+  display: 'swap',
+  varibale: '--font-sora'
+})
 
 export const metadata = {
   title: 'Genki Ramune',
@@ -14,11 +23,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AOSInit />
       <head>
-        {/* Add Google Font (Sora) */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap"
-          rel="stylesheet"
-        />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet" />
       </head>
       <body>

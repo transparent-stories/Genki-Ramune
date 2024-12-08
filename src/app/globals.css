@@ -2,21 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap');
-
-@font-face {
-  font-family: 'Sentient';
-  src: url('/fonts/sentient-regular.woff2') format('woff2'),
-       url('/fonts/sentient-regular.woff') format('woff'),
-       url('/fonts/sentient-regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* Add custom global styles if needed */
 body {
-  font-family: 'Sora', sans-serif;
+  font-family: "sora", sans-serif;
   font-weight: lighter;
   font-size: large;
   background-color: #f9f9f9;
