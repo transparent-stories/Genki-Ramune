@@ -1,25 +1,25 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useProducts } from '../../context/ProductContext';
+import { useProducts } from '@/context/ProductContext';
 import { useKeenSlider } from "keen-slider/react";
 import 'keen-slider/keen-slider.min.css';
-import ProductCard from '../ProductCard';
-import { EmptyState, ErrorState, LoadingState } from '../Global/States';
-import PaginatedDots from '../Global/PaginatedDots';
-import SliderArrows from '../Global/SliderArrows';
+import ProductCard from '@/components/Product/ProductCard';
+import { EmptyState, ErrorState, LoadingState } from '@/components/Global/States';
+import PaginatedDots from '@/components/Global/PaginatedDots';
+import SliderArrows from '@/components/Global/SliderArrows';
 import 'animate.css'
-import FillButton from '../Global/Buttons/FillButton';
+import FillButton from '@/components/Global/Buttons/FillButton';
 
-const ProductList = ({ title, subtitle, filterParams }) => {
+const ProductList = ({ title, subtitle, ...filterParams }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
 
     useEffect(() => {
         setQueryParams((prevParams) => ({
             ...prevParams,
-            ...filterParams,
+            ...filterParams
         }));
-    }, [filterParams, setQueryParams]);
+    }, [setQueryParams]);
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loaded, setLoaded] = useState(false);
@@ -97,8 +97,8 @@ const ProductList = ({ title, subtitle, filterParams }) => {
 
     return (
         <>
-            <div className="product-list py-20 px-7 text-center">
-                <div className='mb-10'>
+            <div className="product-list py-20 text-center">
+                <div className='mb-10 mx-8'>
                     <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{title}</h1>
                     <p className="mb-4" data-aos="fade-in-left">{subtitle}</p>
                 </div>

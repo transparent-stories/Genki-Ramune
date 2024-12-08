@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <header className="p-4 bg-blue-500 text-white">
-            <h1>Genki Ramune</h1>
+            <a href='/'>Genki Ramune</a>
           </header>
           <main>{children}</main>
           <footer className="p-4 bg-gray-800 text-white">

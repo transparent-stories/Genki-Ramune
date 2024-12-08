@@ -7,7 +7,7 @@ const PostCard = ({ image, title, slug }) => {
         <Link href={`/posts/${slug}`} passHref>
             <article
                 data-aos="zoom-in-up"
-                className="relative rounded-2xl text-left overflow-hidden cursor-pointer min-h-52 sm:h-[35vh] aspect-[16/10] transform transition-transform duration-300 hover:scale-105"
+                className="relative rounded-2xl text-left overflow-hidden cursor-pointer min-h-60 sm:h-[35vh] aspect-[16/10] transform transition-transform duration-300 hover:scale-105"
             >
 
                 {/* Background Image */}

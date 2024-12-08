@@ -1,7 +1,7 @@
 import { fetchFromApi } from '@/utils/api';
 import React from 'react'
 import { EmptyState } from '../Global/States';
-import PostCard from '../PostCard';
+import PostCard from '../Blog Post/PostCard';
 import FillButton from '../Global/Buttons/FillButton';
 
 async function getAllPostsData(query) {
@@ -23,7 +23,7 @@ const BlogSection = async ({ queryParams }) => {
 
     return (
         <div className="py-20 px-0 sm:p-20 text-center">
-            <div className='mb-10'>
+            <div className='mb-10 mx-8'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">The Genki Ramune Stories</h1>
                 <p className="mb-4" data-aos="fade-in-left">Elevating Ramune, One Story at a Time</p>
             </div>

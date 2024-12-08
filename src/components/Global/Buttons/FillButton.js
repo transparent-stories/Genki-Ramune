@@ -1,5 +1,5 @@
 'use client';  // Ensure this is rendered on the client-side
-
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const FillButton = ({
@@ -9,7 +9,7 @@ const FillButton = ({
     url = "#"
 }) => {
     return (
-        <button src={url}>
+        <Link href={url}>
             <motion.div
                 className={`h-12 max-w-fit my-8 px-8 cursor-pointer rounded-[50px] ${color} flex justify-center items-center`}
                 whileHover={{ scale: 1.1 }}
@@ -17,7 +17,7 @@ const FillButton = ({
             >
                 <span className={`text-sm sm:text-base ${text_color} lg:text-lg font-medium`}>{text}</span>
             </motion.div>
-        </button>
+        </Link>
     );
 };
 

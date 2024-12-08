@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import "keen-slider/keen-slider.min.css";
-import VideoCard from './VideoCard';
-import { EmptyState } from './Global/States';
+import VideoCard from '@/components/Video/VideoCard';
+import { EmptyState } from '@/components/Global/States';
 
 const VideoList = ({ videos }) => {
     const [activeVideo, setActiveVideo] = useState(null); // Tracks the active video index

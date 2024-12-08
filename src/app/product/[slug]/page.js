@@ -1,6 +1,8 @@
 import { fetchFromApi } from '@/utils/api';
 import { React, cache } from 'react';
-import parse from 'html-react-parser';
+import Gallery from '@/components/Product/page/Gallery';
+import Description from '@/components/Product/page/Description';
+import { ErrorState } from '@/components/Global/States';
 
 // Server-side function to fetch product data
 const getProductData = cache(async (slug) => {
@@ -17,6 +19,7 @@ const getProductData = cache(async (slug) => {
 // Metadata for SEO
 export async function generateMetadata({ params }) {
     const { slug } = await params;
+
     try {
         const _products = await getProductData(slug);
         const product = _products?.[0];
@@ -26,8 +29,8 @@ export async function generateMetadata({ params }) {
         }
 
         const title = product.name || "Product";
-        const description = product.name || "Product details";
-        const image = product.images?.[0]?.src || "https://placehold.co/400x600"; // Fallback image
+        const description = product.short_description || "Product details";
+        const image = product.images?.[0]?.src || "https://placehold.co/400x600";
 
         return {
             title,
@@ -35,7 +38,7 @@ export async function generateMetadata({ params }) {
             openGraph: {
                 title,
                 description,
-                image,
+                images: [image],
             },
         };
     } catch (error) {
@@ -47,6 +50,11 @@ export async function generateMetadata({ params }) {
     }
 }
 
+const validateProduct = (product) => {
+    if (!product) return false;
+    if (!product.name || !Array.isArray(product.images)) return false;
+    return true;
+};
 
 // The dynamic product page
 const ProductPage = async ({ params }) => {
@@ -57,33 +65,60 @@ const ProductPage = async ({ params }) => {
         const _products = await getProductData(slug);
         const product = _products?.[0]
 
+        if (!validateProduct(product)) {
+            return <ErrorState message="Invalid product" height='100vh' />
+        }
+
+        const { primary_color: primaryColor = '#ccc', secondary_color: secondaryColor = '#f5f5f5' } = product?.meta_data?.reduce((acc, meta) => {
+            acc[meta.key] = meta.value;
+            return acc;
+        }, {});
+
         return (
-            <div className="container mx-auto p-4">
-                <h1 className="text-3xl font-bold">{product.name}</h1>
-                <div className="my-4">
-                    <img
-                        src={product.images?.[0]?.src} // Replace with the actual image field
-                        alt={product.name}
-                        className="w-full max-w-md object-cover"
-                    />
+            <>
+                <div
+                    className="py-5 px-4 sm:py-20 sm:px-[10vw] relative flex flex-col md:flex-row gap-5 sm:gap-20 animate-background"
+                    style={{
+                        '--secondary-color': secondaryColor,
+                        backgroundColor: secondaryColor
+                    }}
+                >
+                    <Gallery images={product.images} colors={validateColors({ primaryColor, secondaryColor })} />
+                    <div className="sticky top-10">
+                        <Description product={product} colors={validateColors({ primaryColor, secondaryColor })} />
+                    </div>
                 </div>
-                <div className="text-xs mb-2 font-light">
-                    {parse(product.description)}
-                </div>
-                <p className="text-2xl font-semibold">${product.price}</p>
-                <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                    Add to Cart
-                </button>
-            </div>
+
+                <div className="w-full h-screen bg-red"></div>
+            </>
         );
     } catch (error) {
         return (
             <div className="container mx-auto p-4 text-center">
                 <h1 className="text-2xl font-bold">Product Not Found</h1>
                 <p className="mt-2">The product you are looking for does not exist.</p>
+                <a href="/" className="text-blue-500 underline">Return to Home</a>
             </div>
         );
     }
 };
 
 export default ProductPage;
+
+const validateColors = (colors) => {
+    const isValidHex = (color) => /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/.test(color.trim());
+    const isValidRGB = (color) =>
+        /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i.test(color.trim()) &&
+        color
+            .match(/\d+/g)
+            .every((value) => parseInt(value, 10) >= 0 && parseInt(value, 10) <= 255);
+
+    return {
+        primaryColor: isValidHex(colors?.primaryColor) || isValidRGB(colors?.primaryColor)
+            ? colors.primaryColor.trim()
+            : '#ccc',
+        secondaryColor: isValidHex(colors?.secondaryColor) || isValidRGB(colors?.secondaryColor)
+            ? colors.secondaryColor.trim()
+            : '#f5f5f5',
+    };
+};
