@@ -7,6 +7,11 @@ const nextConfig = {
                 hostname: 'genki-backend.justaddcollagen.com',
                 pathname: '/wp-content/uploads/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'placehold.co',
+                pathname: '/**',
+            }
         ],
     },
     webpack(config) {

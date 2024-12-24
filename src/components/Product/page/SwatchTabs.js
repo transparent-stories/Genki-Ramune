@@ -33,13 +33,13 @@ const SwatchTabs = ({ current }) => {
                 {/* Tab buttons */}
                 <button
                     onClick={() => handleTabSwitch("16")}
-                    className={`p-4 rounded-tl-xl rounded-tr-xl ${activeTag === "16" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70"} w-1/2`}
+                    className={`p-4 rounded-tl-xl rounded-tr-xl border-[1px] border-b-0 ${activeTag === "16" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70 border-gray-200"} w-1/2`}
                 >
                     Our Flavours
                 </button>
                 <button
                     onClick={() => handleTabSwitch("other")}
-                    className={`p-4 rounded-tl-xl rounded-tr-xl ${activeTag === "other" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70"} w-1/2`}
+                    className={`p-4 rounded-tl-xl rounded-tr-xl border-[1px] border-b-0  ${activeTag === "other" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70 border-gray-200"} w-1/2`}
                 >
                     500ml Bottle Cans
                 </button>
@@ -47,7 +47,7 @@ const SwatchTabs = ({ current }) => {
 
             {/* Display fetched products or loading/error states */}
             <AnimatePresence mode="wait">
-                <motion.div className='px-4 py-4 bg-white rounded-bl-xl rounded-br-xl'
+                <motion.div className='px-4 py-4 border-[1px] border-gray-200 border-t-0 bg-white rounded-bl-xl rounded-br-xl'
                 >
 
                     {isLoading ? (
@@ -83,7 +83,7 @@ const SwatchTabs = ({ current }) => {
                                         current={current}
                                         name={product.name}
                                         color={primaryColor}
-                                        img={product?.images?.[0]?.src}
+                                        img={product?.images?.[0]?.src || "https://placehold.co/400x600.jpg"}
                                     />
                                 );
                             })}
@@ -99,7 +99,7 @@ const Swatch = ({ id, name, color, current, url, img }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <motion.li className="flex items-center  rounded-xl overflow-hidden bg-white border-2 hover:border-green"
+        <motion.li className="flex items-center rounded-xl overflow-hidden bg-white border-[1px] hover:border-green"
             animate={{
                 borderColor: current === id || isHovered ? "green" : "lightgrey",
             }}

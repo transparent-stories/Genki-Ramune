@@ -7,7 +7,7 @@ import { fetchFromApi } from '../utils/api';
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-    const [queryParams, setQueryParams] = useState({});
+    const [queryParams, setQueryParams] = useState({ status: 'publish' });
 
     const { data: allProducts, isLoading, error, refetch } = useQuery({
         queryKey: ['allProducts', queryParams],

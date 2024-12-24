@@ -34,7 +34,7 @@ const Gallery = ({ images, colors }) => {
                     style={imageBackground}
                 >
                     <img
-                        src={images?.[0]?.src} // Replace with the actual image field
+                        src={images?.[0]?.src || "https://placehold.co/400x600"} // Replace with the actual image field
                         alt={images?.[0]?.alt || 'Image'} // Fallback alt text
                         className="object-contain w-4/5 h-4/5"
                     />
