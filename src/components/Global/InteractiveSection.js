@@ -4,16 +4,20 @@ import React from "react";
 
 const InteractiveSection = ({ targetUrl, children }) => {
     const router = useRouter();
-    targetUrl = targetUrl[0] === '/' ? targetUrl : `/${targetUrl}`
+
+    // Ensure targetUrl starts with '/' if defined, otherwise leave it undefined
+    const normalizedUrl = targetUrl ? (targetUrl[0] === '/' ? targetUrl : `/${targetUrl}`) : undefined;
 
     const handleClick = () => {
-        router.push(targetUrl);
+        if (normalizedUrl) {
+            router.push(normalizedUrl);
+        }
     };
 
     return (
         <div
-            className="cursor-pointer"
-            onClick={handleClick}
+            className={normalizedUrl ? "cursor-pointer" : ""}
+            onClick={normalizedUrl ? handleClick : undefined}
         >
             {children}
         </div>

@@ -6,13 +6,13 @@ import InteractiveSection from "../Global/InteractiveSection";
 const Banner = ({
     heading = "BlissFul Blueberry",
     text = "Soda that’s always a surprise",
-    button = "View Now",
+    button,
     desktopImage,
     mobileImage,
-    url = "#"
+    url
 }) => {
     return (
-        <InteractiveSection targetUrl={"/about"}>
+        <InteractiveSection targetUrl={url}>
             <section className="relative bg-cover bg-center sm:aspect-[16/8] overflow-hidden">
                 {/* Replace <picture> with <Image> */}
                 <picture>
@@ -35,7 +35,7 @@ const Banner = ({
                     <div className="max-w-lg flex flex-col">
                         <h1 className="text-purple text-4xl font-bold sm:text-8xl">{heading}</h1>
                         <p className="mt-4 text-lg text-purple">{text}</p>
-                        <FillButton text={button} color="bg-white" text_color="text-purple" url={url} />
+                        {button && <FillButton text={button} color="bg-white" text_color="text-purple" url={url} />}
                     </div>
                 </div>
             </section>
