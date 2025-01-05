@@ -4,6 +4,7 @@ import Gallery from '@/components/Product/page/Gallery';
 import Description from '@/components/Product/page/Description';
 import { ErrorState } from '@/components/Global/States';
 import Link from 'next/link';
+import IngredientsSection from '@/components/Product/page/IngredientsSection';
 
 // Server-side function to fetch product data
 const getProductData = cache(async (slug) => {
@@ -78,10 +79,10 @@ const ProductPage = async ({ params }) => {
         return (
             <>
                 <div
-                    className="py-5 px-4 sm:py-20 sm:px-[10vw] relative flex flex-col md:flex-row gap-5 sm:gap-20 animate-background"
+                    className="py-5 px-4 sm:py-20 sm:px-[10vw] relative flex flex-col md:flex-row gap-5 sm:gap-20"
                     style={{
-                        '--secondary-color': secondaryColor,
-                        backgroundColor: secondaryColor
+                        '--secondary-color': "white",
+                        backgroundColor: "white"
                     }}
                 >
                     <Gallery images={product.images} colors={validateColors({ primaryColor, secondaryColor })} />
@@ -90,7 +91,7 @@ const ProductPage = async ({ params }) => {
                     </div>
                 </div>
 
-                <div className="w-full h-screen bg-red"></div>
+                <IngredientsSection product={product} colors={validateColors({ primaryColor, secondaryColor })} />
             </>
         );
     } catch (error) {
