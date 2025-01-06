@@ -11,9 +11,9 @@ const Gallery = ({ images, colors }) => {
     const { primaryColor, secondaryColor } = colors;
 
     let imageBackground = {
-        '--primary-color': primaryColor,
-        backgroundColor: primaryColor,
-        color: secondaryColor,
+        '--primary-color': secondaryColor,
+        backgroundColor: secondaryColor,
+        color: primaryColor,
     }
 
     let imagesForGrid = images.slice(1)
@@ -48,7 +48,7 @@ const Gallery = ({ images, colors }) => {
                         return <div key={idx} className="color-white p-2 sm:p-5 grid-col h-full flex items-center justify-center rounded-2xl animate-image-background"
                             style={imageBackground}
                         >
-                            <Icon fill={secondaryColor} />
+                            <Icon fill={primaryColor} />
                         </div>
                     })
                 }

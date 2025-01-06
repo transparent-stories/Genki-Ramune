@@ -8,7 +8,7 @@ import { EmptyState, ErrorState, LoadingState } from '@/components/Global/States
 import PropTypes from 'prop-types';
 
 
-const SwatchTabs = ({ current }) => {
+const SwatchTabs = ({ current, color }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
     const [activeTag, setActiveTag] = useState("16"); // Initial active tag
 
@@ -33,7 +33,7 @@ const SwatchTabs = ({ current }) => {
                 {/* Tab buttons */}
                 <button
                     onClick={() => handleTabSwitch("16")}
-                    className={`p-4 rounded-tl-xl rounded-tr-xl border-[1px] border-b-0 ${activeTag === "16" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70 border-gray-200"} w-1/2`}
+                    className={`p-4 rounded-tl-xl rounded-tr-xl border-[1px] border-b-0 ${activeTag === "16" ? `bg-white text-green` : "bg-gray-200 text-gray-400 opacity-70 border-gray-200"} w-1/2`}
                 >
                     Our Flavours
                 </button>

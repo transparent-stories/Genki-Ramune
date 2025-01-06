@@ -6,7 +6,7 @@ import FillButton from '../Global/Buttons/FillButton';
 
 const DistributorPerks = ({ heading, perks }) => {
     return (
-        <div className="py-10 px-8 sm:p-20 text-center">
+        <div className="py-10 px-8 sm:p-10 text-center">
             <div className='mb-10'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{heading}</h1>
             </div>

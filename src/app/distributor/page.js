@@ -102,6 +102,9 @@ const page = async () => {
             </div>
             <DistributorPerks {...perkSectionProps} />
             <DistributorList {...distributorListSectionProps} />
+            <div className='mb-16 md:m-0 mx-4 text-center'>
+                <h1 className="text-4xl sm:text-6xl font-extrabold text-green" data-aos="zoom-in-up">{section_4_title}</h1>
+            </div>
             <DistributorForm {...distributorFormProps} />
         </div>
     )
@@ -109,7 +112,7 @@ const page = async () => {
 
 const DistributorList = ({ heading, distributor_list }) => {
     return (
-        <div className="py-10 px-8 sm:pt-20 text-center flex flex-col items-center">
+        <div className="py-10 px-8 sm:pt-10 text-center flex flex-col items-center">
             <div className='mb-10'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{heading}</h1>
             </div>

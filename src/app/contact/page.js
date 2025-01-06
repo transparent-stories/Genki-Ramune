@@ -9,7 +9,7 @@ import ContactForm from '@/components/Contact Page/ContactForm';
 const queryParams = { _fields: "id,title,acf", acf_format: "standard", status: "publish" };
 
 // Server-side function to fetch product data
-const getPageData = cache(async (id = "199") => {
+const getPageData = cache(async (id = "231") => {
     try {
         // Fetch product data from WooCommerce API
         const product = await fetchFromApi(`/pages/${id}`, queryParams, "wp");
@@ -60,7 +60,7 @@ const page = async () => {
             section_1_title,
             section_1_text,
             section_2_title,
-            section_2_text,
+            section_2_text
         }
     } = page
 
@@ -74,8 +74,8 @@ const page = async () => {
     };
 
     const section2Props = {
-        heading: section_2_title,
-        text: section_2_text
+        heading: section_2_title || "section 2 title",
+        text: section_2_text || "section 2 text"
     }
 
     return (

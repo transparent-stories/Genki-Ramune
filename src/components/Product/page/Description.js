@@ -27,7 +27,7 @@ const Description = ({ product, colors }) => {
                     {shortDescription ? parse(shortDescription) : "No description available."}
                 </div>
             </div>
-            <SwatchTabs current={id} />
+            <SwatchTabs current={id} color={colors.primaryColor} />
             <FillButton text="Shop All Flavours" color="bg-green" text_color="text-white" url="/about" />
         </div>
     )
