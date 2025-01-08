@@ -27,8 +27,14 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <header className="p-4 bg-blue-500 text-white">
+          <header className="p-4  bg-green text-white">
             <Link href='/'>Genki Ramune</Link>
+            <div className='flex gap-10'>
+              <Link href='/distributor'>Distributor</Link>
+              <Link href='/contact'>Contact</Link>
+              <Link href='/about-us'>About</Link>
+            </div>
+
           </header>
           <main>{children}</main>
           <footer className="p-4 bg-gray-800 text-white">
