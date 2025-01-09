@@ -83,10 +83,10 @@ const page = async () => {
     }
 
     return (
-        <div className='bg-cream pb-10'>
+        <div className='bg-cream'>
             <Banner {...bannerProps} />
-            <div className='py-10 mt-20 mx-4 text-center'>
-                <h1 className="text-4xl sm:text-6xl font-extrabold mb-16 text-green" data-aos="zoom-in-up">{section_1_title}</h1>
+            <div className='pt-10 mt-10 mx-4 text-center'>
+                <h1 className="text-4xl sm:text-6xl font-extrabold mb-8 text-green" data-aos="zoom-in-up">{section_1_title}</h1>
                 <div className="" data-aos="fade-in-left">
                     {section_1_text ? parse(section_1_text) : "No description available."}
                 </div>
@@ -136,7 +136,7 @@ const Section2 = ({ text, contacts, socials }) => {
 
             {/* Content Section */}
             <div
-                className="relative pt-[25%] z-20 mx-auto max-w-screen-lg px-6 sm:px-12 py-16"
+                className="relative pt-32 sm:pt-[17rem] z-20 mx-auto max-w-screen-lg px-6 sm:px-12 py-8"
                 data-aos="fade-in-left"
             >
                 <div className="text-left">

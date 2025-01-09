@@ -14,7 +14,7 @@ const AboutBanner = ({
 }) => {
     return (
         <InteractiveSection targetUrl={url}>
-            <section className="relative bg-cover bg-center aspect-[4/5] sm:aspect-[16/8] overflow-hidden">
+            <section className="relative bg-cover bg-center aspect-[4/5] sm:aspect-[16/9] overflow-hidden">
                 {/* Replace <picture> with <Image> */}
                 <picture className="">
                     {/* Desktop image for larger screens */}

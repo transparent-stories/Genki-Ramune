@@ -18,7 +18,7 @@ const ContactForm = ({ heading = "Contact Us" }) => {
     console.log(watch()); // Logs the values of all fields (for debugging purposes)
 
     return (
-        <div className="flex flex-row justify-center pb-10 px-8 sm:p-20 text-left">
+        <div className="flex flex-row justify-center sm:pb-0 px-8 sm:p-20 text-left">
             {/* <h2 className="text-2xl font-bold mb-6">{heading}</h2> */}
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-[700px] flex flex-col gap-5">
