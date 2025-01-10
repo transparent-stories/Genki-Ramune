@@ -4,6 +4,7 @@ import Providers from './providers';
 import Link from 'next/link';
 import { Sora } from 'next/font/google'
 import _customFont from '@/app/font'
+import Footer from '@/components/Global/Footer';
 
 const _sora = Sora({
   weight: ['400', '500', '600'],
@@ -37,9 +38,7 @@ export default function RootLayout({ children }) {
 
           </header>
           <main>{children}</main>
-          <footer className="p-4 bg-gray-800 text-white">
-            <p>© 2024 Genki Ramune</p>
-          </footer>
+          <Footer />
         </Providers>
       </body>
     </html>
