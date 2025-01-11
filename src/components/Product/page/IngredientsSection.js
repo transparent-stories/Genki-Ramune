@@ -20,7 +20,7 @@ const IngredientsSection = ({ product, colors }) => {
 
     return (
         <>
-            <div className='w-20 -mt-10 sm:mt-20 z-10 absolute right-10 h-auto'>
+            <div className='w-20 -mt-16 sm:-mt-6 z-10 absolute right-10 h-auto'>
                 {/* Decoration svg */}
                 {
                     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill={secondaryColor}>
@@ -31,10 +31,24 @@ const IngredientsSection = ({ product, colors }) => {
             </div>
 
             <div className="w-full relative overflow-hidden" style={{ backgroundColor: secondaryColor }}>
-                <svg className="wave-top absolute top-0 left-0 w-full h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                {/* <svg className="wave-top absolute top-0 left-0 w-full h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="white" fillOpacity="1" d="M0,96C120,144,240,192,360,186.7C480,181,600,123,720,101.3C840,80,960,96,1080,122.7C1200,149,1320,181,1440,192L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,0,0Z"></path>
+                </svg> */}
+                {/* Wave Top SVG */}
+                <svg
+                    className="absolute top-0 left-0 w-full h-auto"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 1440 100"
+                >
+                    <path
+                        fill="white"
+                        fillOpacity="1"
+                        d="M0,48C120,56,240,64,360,62C480,60,600,52,720,48C840,44,960,48,1080,52C1200,56,1320,60,1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,0,0Z"
+                    ></path>
                 </svg>
-                <div className='flex flex-col md:flex-row justify-evenly px-5 md:px-20 mt-[10%] mb-[5%] items-top'>
+
+
+                <div className='flex flex-col md:flex-row justify-evenly px-5 md:px-20 mt-[5%] mb-[5%] items-top'>
 
                     <div className="max-w-lg text-sm flex flex-col mt-32 gap-5" style={{ color: primaryColor }} >
                         <h1 className="text-4xl font-bold sm:text-7xl">{name}</h1>
