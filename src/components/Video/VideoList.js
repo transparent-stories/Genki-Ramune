@@ -66,7 +66,7 @@ const VideoList = ({ videos }) => {
                 slider.on("updated", nextTimeout);
             },
         ]
-    );
+    )
 
     if (!videos || videos.length === 0) return <EmptyState height="100px" message="No Videos Found" />;
 
