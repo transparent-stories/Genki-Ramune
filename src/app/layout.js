@@ -34,6 +34,7 @@ export default function RootLayout({ children }) {
               <Link href='/distributor'>Distributor</Link>
               <Link href='/contact'>Contact</Link>
               <Link href='/about-us'>About</Link>
+              <Link href='/gallery'>Gallery</Link>
             </div>
 
           </header>

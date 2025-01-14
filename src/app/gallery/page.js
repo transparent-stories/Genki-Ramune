@@ -65,7 +65,7 @@ const page = async () => {
             section_2_cards,
             section_3_title,
             section_3_text,
-            section_3_images
+            section_3_image
         }
     } = page
 
@@ -91,14 +91,14 @@ const page = async () => {
     const section3Props = {
         heading: section_3_title || "section 3 title",
         text: section_3_text || "Section 3 text",
-        images: section_3_images || []
+        image: section_3_image || "https://picsum.photos/800"
     }
 
     return (
         <div className='bg-cream'>
             <Banner {...bannerProps} />
             <Section1 {...section1Props} />
-            <Section2 {...section1Props} />
+            <Section2 {...section2Props} />
             <Section3 {...section3Props} />
         </div>
     )
@@ -122,6 +122,7 @@ const Section1 = ({ heading, social_posts }) => {
 }
 
 const Section2 = ({ heading, social_posts }) => {
+
     return (
         <div className='relative pt-32 pb-10 p-10 sm:px-20 text-center bg-[#5b955a]'>
 
@@ -186,7 +187,9 @@ const Section2 = ({ heading, social_posts }) => {
     )
 }
 
-const Section3 = ({ heading, text, images }) => {
+const Section3 = ({ heading, text, image }) => {
+
+
     return (
         <section className="bg-cover bg-center sm:aspect-[16/9] overflow-hidden flex flex-col sm:flex-row">
 
@@ -199,18 +202,18 @@ const Section3 = ({ heading, text, images }) => {
             </div>
 
             {/* Replace <picture> with <Image> */}
-            <picture className="p-10 sm:p-20">
+            <picture className="p-10 ">
                 {/* Desktop image for larger screens */}
-                <source srcSet={images[0]} media="(min-width: 768px)" />
+                {/* <source srcSet={image} media="(min-width: 768px)" /> */}
                 {/* Mobile image for smaller screens */}
                 <Image
-                    src={images[0]} // Mobile image source
+                    src={image} // Mobile image source
                     alt={heading}
                     // layout="responsive" // Ensures the image is responsive
                     width={1920} // Specify the width of the desktop image
                     height={1080} // Specify the height of the desktop image
                     sizes="(max-width: 768px) 100vw, 50vw" // Responsive sizes for better loading
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     priority // Load the image early as it's above-the-fold
                 />
             </picture>

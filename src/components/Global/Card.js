@@ -22,6 +22,8 @@ const Card = ({ post_image, post_title, post_text, post_link }) => {
                             src={post_image}
                             alt={post_title || 'Post Image'}
                             layout="fill"
+                            // width={1080}
+                            // height={1080}
                             objectFit="cover"
                         />
                     </div>
@@ -31,6 +33,12 @@ const Card = ({ post_image, post_title, post_text, post_link }) => {
                         <h2 className="text-2xl text-green font-semibold">{post_title}</h2>
                     )}
                     {post_text && <p className="text-gray-600 text-sm">{post_text}</p>}
+                    <div className="flex items-center gap-2 cursor-pointer text-green text-sm font-bold">
+                        <span>Read More</span>
+                        <svg width="20px" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </Link>

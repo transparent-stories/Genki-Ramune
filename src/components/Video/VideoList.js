@@ -17,7 +17,7 @@ const VideoList = ({ videos }) => {
             loop: false,
             renderMode: "performance",
             slides: {
-                mode: 'center',
+                mode: 'free-snap',
                 perView: 4,
                 spacing: 15,
             },
