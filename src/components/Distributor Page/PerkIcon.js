@@ -14,7 +14,7 @@ const PerkIcon = ({ icon: icon, title: title, content: content }) => {
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             />
 
-            <div className='bg-cream px-5 py-10 sm:py-16 mt-[-40px] rounded-md'>
+            <div className='bg-cream px-5 py-10 sm:py-16 mt-[-40px] rounded-md min-h-52 md:min-h-60'>
                 <h4 className="mt-4 text-sm text-black font-bold">{title}</h4>
                 <p className="mt-4 text-xs text-black">
                     {content}

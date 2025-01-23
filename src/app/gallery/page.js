@@ -195,7 +195,7 @@ const Section3 = ({ heading, text, image }) => {
 
             <div className="inset-0 flex items-top px-8 lg:p-32 lg:w-2/3">
                 <div className="max-w-lg mt-20 flex flex-col text-black">
-                    <h1 className="text-green text-5xl font-bold sm:text-7xl">{heading}</h1>
+                    <h1 className="text-green text-5xl font-bold sm:text-7xl mb-10">{heading}</h1>
                     {text ? parse(text) : "No description available."}
                     {/* {button && <FillButton text={button} color="bg-white" text_color="text-purple" url={url} />} */}
                 </div>

@@ -38,7 +38,7 @@ const Footer = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email Address"
-                                className="flex-grow px-4 py-2 text-green-900 rounded-full focus:outline-green"
+                                className="flex-grow px-4 py-2 text-green rounded-full focus:outline-green"
                             />
                             <button
                                 type="submit"

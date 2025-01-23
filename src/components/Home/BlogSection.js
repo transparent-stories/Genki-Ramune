@@ -22,7 +22,7 @@ const BlogSection = async ({ queryParams }) => {
     if (!posts || posts.length === 0) return <EmptyState height='100px' message='No posts Found' />
 
     return (
-        <div className="py-20 px-0 sm:p-20 text-center">
+        <div className="py-20 px-0 sm:p-20 text-center min-h-screen flex flex-col justify-center">
             <div className='mb-10 mx-8'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">The Genki Ramune Stories</h1>
                 <p className="mb-4" data-aos="fade-in-left">Elevating Ramune, One Story at a Time</p>
