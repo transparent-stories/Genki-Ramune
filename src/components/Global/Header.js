@@ -29,7 +29,7 @@ const Header = () => {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex gap-10">
-                <Link href="/products" className="hover:underline">Products</Link>
+                <Link href="/" className="hover:underline">Products</Link>
                 <Link href="/gallery" className="hover:underline">Gallery</Link>
                 <Link href="/contact" className="hover:underline">Contact Us</Link>
             </nav>

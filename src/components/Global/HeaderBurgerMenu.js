@@ -1,12 +1,17 @@
 'use client'
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Lottie from 'react-lottie';
 import animationData from '/public/hamburger-menu.json';
 
 const HeaderBurgerMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true); // Ensures the component is rendered on the client side
+    }, []);
 
     const defaultOptions = {
         loop: false,
@@ -18,9 +23,13 @@ const HeaderBurgerMenu = () => {
         setIsMenuOpen((prev) => !prev);
     };
 
-    const navigateTo = (path) => {
+    const navigateTo = () => {
         setIsMenuOpen(false);
     };
+
+    if (!isClient) {
+        return null; // Prevent rendering the component on the server
+    }
 
     return (
         <div className="lg:hidden relative">
@@ -48,22 +57,22 @@ const HeaderBurgerMenu = () => {
                 className="absolute top-16 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
             >
                 <nav className="flex flex-col gap-6">
-                    <Link href="/distributor" onClick={() => navigateTo('/distributor')} className="hover:underline pt-6">
+                    <Link href="/distributor" onClick={() => navigateTo()} className="hover:underline pt-6">
                         Stories
                     </Link>
-                    <Link href="/distributor" onClick={() => navigateTo('/distributor')} className="hover:underline">
+                    <Link href="/distributor" onClick={() => navigateTo()} className="hover:underline">
                         Distributor
                     </Link>
-                    <Link href="/about-us" onClick={() => navigateTo('/about-us')} className="hover:underline">
+                    <Link href="/about-us" onClick={() => navigateTo()} className="hover:underline">
                         About Us
                     </Link>
-                    <Link href="/products" onClick={() => navigateTo('/products')} className="hover:underline">
+                    <Link href="/products" onClick={() => navigateTo()} className="hover:underline">
                         Products
                     </Link>
-                    <Link href="/gallery" onClick={() => navigateTo('/gallery')} className="hover:underline">
+                    <Link href="/gallery" onClick={() => navigateTo()} className="hover:underline">
                         Gallery
                     </Link>
-                    <Link href="/contact" onClick={() => navigateTo('/contact')} className="hover:underline pb-6">
+                    <Link href="/contact" onClick={() => navigateTo()} className="hover:underline pb-6">
                         Contact Us
                     </Link>
                 </nav>
