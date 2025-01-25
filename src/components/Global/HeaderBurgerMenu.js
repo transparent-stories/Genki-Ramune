@@ -1,0 +1,75 @@
+'use client'
+import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import Lottie from 'react-lottie';
+import animationData from '/public/hamburger-menu.json';
+
+const HeaderBurgerMenu = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const defaultOptions = {
+        loop: false,
+        autoplay: false,
+        animationData: animationData
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
+    };
+
+    const navigateTo = (path) => {
+        setIsMenuOpen(false);
+    };
+
+    return (
+        <div className="lg:hidden relative">
+            {/* Burger Icon */}
+            <button
+                onClick={toggleMenu}
+                className="cursor-pointer px-6"
+                aria-label="Toggle menu"
+            >
+                <Lottie
+                    options={defaultOptions}
+                    isClickToPauseDisabled={!isMenuOpen}
+                    // isStopped={!isMenuOpen}
+                    // isPaused={isMenuOpen}
+                    height={30}
+                    width={30}
+                />
+            </button>
+
+            {/* Drawer Menu */}
+            <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: isMenuOpen ? 'auto' : 0 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                className="absolute top-16 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
+            >
+                <nav className="flex flex-col gap-6">
+                    <Link href="/distributor" onClick={() => navigateTo('/distributor')} className="hover:underline pt-6">
+                        Stories
+                    </Link>
+                    <Link href="/distributor" onClick={() => navigateTo('/distributor')} className="hover:underline">
+                        Distributor
+                    </Link>
+                    <Link href="/about-us" onClick={() => navigateTo('/about-us')} className="hover:underline">
+                        About Us
+                    </Link>
+                    <Link href="/products" onClick={() => navigateTo('/products')} className="hover:underline">
+                        Products
+                    </Link>
+                    <Link href="/gallery" onClick={() => navigateTo('/gallery')} className="hover:underline">
+                        Gallery
+                    </Link>
+                    <Link href="/contact" onClick={() => navigateTo('/contact')} className="hover:underline pb-6">
+                        Contact Us
+                    </Link>
+                </nav>
+            </motion.div>
+        </div>
+    );
+};
+
+export default HeaderBurgerMenu;

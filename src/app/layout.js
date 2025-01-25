@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Sora } from 'next/font/google'
 import _customFont from '@/app/font'
 import Footer from '@/components/Global/Footer';
+import Header from '@/components/Global/Header';
 
 const _sora = Sora({
   weight: ['400', '500', '600'],
@@ -28,16 +29,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Providers>
-          <header className="p-4  bg-green text-white">
-            <Link href='/'>Genki Ramune</Link>
-            <div className='flex gap-10'>
-              <Link href='/distributor'>Distributor</Link>
-              <Link href='/contact'>Contact</Link>
-              <Link href='/about-us'>About</Link>
-              <Link href='/gallery'>Gallery</Link>
-            </div>
-
-          </header>
+          <Header />
           <main>{children}</main>
           <Footer />
         </Providers>

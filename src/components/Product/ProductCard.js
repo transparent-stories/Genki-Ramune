@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
             <motion.img
                 src={primaryImage}
                 alt={product.name}
-                className="sm:w-72 sm:h-72 w-72 h-72 object-contain z-10 lg:mt-[-10%] mt-[-20%]"
+                className="sm:w-72 sm:h-72 w-64 h-64 object-contain z-10 lg:mt-[-10%] mt-[-20%]"
                 animate={{
                     opacity: isHovered ? 0 : 1,
                 }}
@@ -126,7 +126,7 @@ const ProductCard = ({ product }) => {
                     {/* View Now Button */}
                     <motion.div
                         // href={`/product/${product.slug}`}
-                        className="relative text-black text-sm mb-2 font-light transition-colors duration-300 hover:text-black underline underline-offset-4"
+                        className="relative text-black text-sm sm:mb-2 font-light transition-colors duration-300 hover:text-black underline underline-offset-4"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.3 }}
