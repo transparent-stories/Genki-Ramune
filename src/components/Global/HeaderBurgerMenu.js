@@ -2,7 +2,8 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Lottie from 'react-lottie';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
 import animationData from '/public/hamburger-menu.json';
 
 const HeaderBurgerMenu = () => {
