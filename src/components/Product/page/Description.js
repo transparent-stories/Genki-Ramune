@@ -23,12 +23,12 @@ const Description = ({ product, colors }) => {
                     data-aos="zoom-in-right"
                     style={{ color: colors.primaryColor }}
                 >{name}</h1>
-                <div className="mb-4" data-aos="zoom-in-right" style={{ color: colors.primaryColor }}>
+                <div className="mb-4 text-black" data-aos="zoom-in-right">
                     {shortDescription ? parse(shortDescription) : "No description available."}
                 </div>
             </div>
             <SwatchTabs current={id} color={colors.primaryColor} />
-            <FillButton text="Shop All Flavours" color="bg-green" text_color="text-white" url="/about" />
+            <FillButton text="Contact Us" color="bg-green" text_color="text-white" url="/contact" />
         </div>
     )
 }

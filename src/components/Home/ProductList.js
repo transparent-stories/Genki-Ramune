@@ -9,7 +9,6 @@ import { EmptyState, ErrorState, LoadingState } from '@/components/Global/States
 import PaginatedDots from '@/components/Global/PaginatedDots';
 import SliderArrows from '@/components/Global/SliderArrows';
 import 'animate.css'
-import FillButton from '@/components/Global/Buttons/FillButton';
 
 const ProductList = ({ title, subtitle, ...filterParams }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
@@ -97,10 +96,10 @@ const ProductList = ({ title, subtitle, ...filterParams }) => {
 
     return (
         <>
-            <div className="product-list py-20 text-center">
+            <div id="product-list-section" className="product-list py-20 text-center">
                 <div className='mb-10 mx-8'>
-                    <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{title}</h1>
-                    <p className="mb-4" data-aos="fade-in-left">{subtitle}</p>
+                    <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">{title}</h1>
+                    <p className="font-extralight text-base mb-8" data-aos="fade-in-left">{subtitle}</p>
                 </div>
                 <div className="navigation-wrapper mb-5">
                     <div ref={sliderRef} className="keen-slider">
@@ -130,9 +129,6 @@ const ProductList = ({ title, subtitle, ...filterParams }) => {
                     )}
                 </div>
                 {loaded && instanceRef.current && <PaginatedDots currentSlide={currentSlide} instanceRef={instanceRef} />}
-                <div className='flex justify-center items-center'>
-                    <FillButton text="Shop All Flavours" color="bg-green" text_color="text-white" url="/about" />
-                </div>
             </div>
         </>
 

@@ -58,20 +58,20 @@ const HeaderBurgerMenu = () => {
                 className="absolute top-16 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
             >
                 <nav className="flex flex-col gap-6">
-                    <Link href="/distributor" onClick={() => navigateTo()} className="hover:underline pt-6">
-                        Stories
+                    <Link href="/about-us" onClick={() => navigateTo()} className="hover:underline pt-6">
+                        About Us
+                    </Link>
+                    <Link href="/#product-list-section" onClick={() => navigateTo()} className="hover:underline">
+                        Products
                     </Link>
                     <Link href="/distributor" onClick={() => navigateTo()} className="hover:underline">
                         Distributor
                     </Link>
-                    <Link href="/about-us" onClick={() => navigateTo()} className="hover:underline">
-                        About Us
-                    </Link>
-                    <Link href="/products" onClick={() => navigateTo()} className="hover:underline">
-                        Products
-                    </Link>
                     <Link href="/gallery" onClick={() => navigateTo()} className="hover:underline">
                         Gallery
+                    </Link>
+                    <Link href="/distributor" onClick={() => navigateTo()} className="hover:underline">
+                        Stories
                     </Link>
                     <Link href="/contact" onClick={() => navigateTo()} className="hover:underline pb-6">
                         Contact Us

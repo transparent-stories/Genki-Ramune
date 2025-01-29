@@ -52,7 +52,9 @@ const IngredientsSection = ({ product, colors }) => {
 
                     <div className="max-w-lg text-sm flex flex-col mt-32 gap-5" style={{ color: primaryColor }} >
                         <h1 className="text-4xl font-bold sm:text-7xl">{name}</h1>
-                        {description ? parse(description) : "No description available."}
+                        <div className='text-black'>
+                            {description ? parse(description) : "No description available."}
+                        </div>
                     </div>
 
                     <IngredientsTable data={ingredientTable} colors={colors} />

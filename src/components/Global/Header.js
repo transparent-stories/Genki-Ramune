@@ -11,9 +11,10 @@ const Header = () => {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex gap-10">
-                <Link href="/distributor" className="hover:underline">Stories</Link>
-                <Link href="/distributor" className="hover:underline">Distributor</Link>
                 <Link href="/about-us" className="hover:underline">About Us</Link>
+                <Link href="/#product-list-section" className="hover:underline">Products</Link>
+                <Link href="/distributor" className="hover:underline">Distributor</Link>
+
             </nav>
 
             {/* Logo */}
@@ -21,7 +22,7 @@ const Header = () => {
                 <Image
                     src="/logo.png"
                     alt="Genki Ramune logo"
-                    width={150}
+                    width={120}
                     height={125}
                     className="transition-transform translate-x-16 sm:translate-x-0 duration-500 transform hover:scale-110 fill-green"
                 />
@@ -29,8 +30,8 @@ const Header = () => {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex gap-10">
-                <Link href="/" className="hover:underline">Products</Link>
                 <Link href="/gallery" className="hover:underline">Gallery</Link>
+                <Link href="/distributor" className="hover:underline">Stories</Link>
                 <Link href="/contact" className="hover:underline">Contact Us</Link>
             </nav>
         </header>

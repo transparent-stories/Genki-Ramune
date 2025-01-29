@@ -8,10 +8,10 @@ const Footer = () => {
                 {/* Top Section */}
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 gap-x-6 md:gap-8 py-8">
                     <div>
-                        <p className="font-bold text-2xl md:text-lg mb-4">Shop</p>
+                        <p className="font-bold text-2xl md:text-lg mb-4">Products</p>
                         <ul className="space-y-2">
-                            <li>Flavours</li>
-                            <li>Wholesale</li>
+                            <li><Link href='/product/strawberry-swing'>200ml Ramune</Link></li>
+                            <li><Link href='/product/strawberry-swing'>500ml Bottle Cans</Link></li>
                         </ul>
                     </div>
 
@@ -28,7 +28,7 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li><Link href='/about-us'>About Us</Link></li>
                             <li>Testimonials</li>
-                            <li>Blog</li>
+                            <li><Link href='/blog'>Blog</Link></li>
                         </ul>
                     </div>
 

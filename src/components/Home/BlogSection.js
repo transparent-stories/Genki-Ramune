@@ -24,14 +24,14 @@ const BlogSection = async ({ queryParams }) => {
     return (
         <div className="py-20 px-0 sm:p-20 text-center min-h-screen flex flex-col justify-center">
             <div className='mb-10 mx-8'>
-                <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">The Genki Ramune Stories</h1>
-                <p className="mb-4" data-aos="fade-in-left">Elevating Ramune, One Story at a Time</p>
+                <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">The Genki Ramune Stories</h1>
+                <p className="font-extralight text-base mb-8" data-aos="fade-in-left">Elevating Ramune, One Story at a Time</p>
             </div>
             <div className="blog-list flex flex-wrap justify-center gap-8 mt-12 mb-4">
                 {posts.map((post) => <PostCard key={post?.id} id={post?.id} image={post?.featured_image_src} title={post?.title?.rendered} slug={post?.slug} />)}
             </div>
             <div className='flex justify-center items-center'>
-                <FillButton text="Read All Articles" color="bg-green" text_color="text-white" url="/posts" />
+                <FillButton text="Read All Blogs" color="bg-green" text_color="text-white" url="/posts" />
             </div>
         </div>
     );
