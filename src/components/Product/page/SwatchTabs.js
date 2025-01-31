@@ -8,20 +8,21 @@ import { EmptyState, ErrorState, LoadingState } from '@/components/Global/States
 import PropTypes from 'prop-types';
 
 
-const SwatchTabs = ({ current, color }) => {
+const SwatchTabs = ({ currentTag, current, color }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
-    const [activeTag, setActiveTag] = useState("16"); // Initial active tag
+    const [activeTag, setActiveTag] = useState(currentTag.toString()); // Initial active tag
 
-    // Memoize the filterParams based on the active tag
-    const filterParams = useMemo(() => ({ tag: activeTag }), [activeTag]);
+    console.log(activeTag)
 
     // Update query params only when the active tag changes
     useEffect(() => {
         setQueryParams((prevParams) => ({
             ...prevParams,
-            ...filterParams,
+            tag: activeTag,
         }));
-    }, [filterParams, setQueryParams]);
+
+        console.log("Updated products:", allProducts);
+    }, [activeTag, allProducts, setQueryParams]);
 
     const handleTabSwitch = (tag) => {
         setActiveTag(tag); // Update the active tag
@@ -29,7 +30,7 @@ const SwatchTabs = ({ current, color }) => {
 
     return (
         <div>
-            <div className="w-100% text-sm">
+            <div className="sm:w-[36vw] text-sm">
                 {/* Tab buttons */}
                 <button
                     onClick={() => handleTabSwitch("16")}
@@ -38,8 +39,8 @@ const SwatchTabs = ({ current, color }) => {
                     Our Flavours
                 </button>
                 <button
-                    onClick={() => handleTabSwitch("other")}
-                    className={`p-4 rounded-tl-xl rounded-tr-xl border-[1px] border-b-0  ${activeTag === "other" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70 border-gray-200"} w-1/2`}
+                    onClick={() => handleTabSwitch("37")}
+                    className={`p-4 rounded-tl-xl rounded-tr-xl border-[1px] border-b-0  ${activeTag === "37" ? "bg-white text-green" : "bg-gray-200 text-gray-400 opacity-70 border-gray-200"} w-1/2`}
                 >
                     500ml Bottle Cans
                 </button>
@@ -58,7 +59,7 @@ const SwatchTabs = ({ current, color }) => {
                         <EmptyState height='20vh' message='No Variants Found' />
                     ) : (
                         <motion.ul className="grid grid-cols-2 gap-4"
-                            initial="hidden"
+                            // initial="hidden"
                             animate="visible"
                             exit="exit"
                             variants={{

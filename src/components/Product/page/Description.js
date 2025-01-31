@@ -9,7 +9,8 @@ const Description = ({ product, colors }) => {
         throw Error("Invalid Product")
     }
 
-    const { name, short_description: shortDescription, id } = product;
+    const { name, short_description: shortDescription, id, tags } = product;
+    const firstTagId = tags?.length > 0 ? tags[0].id : "16";
 
     if (!name || !id) {
         throw Error("Invalid Product")
@@ -27,7 +28,7 @@ const Description = ({ product, colors }) => {
                     {shortDescription ? parse(shortDescription) : "No description available."}
                 </div>
             </div>
-            <SwatchTabs current={id} color={colors.primaryColor} />
+            <SwatchTabs currentTag={firstTagId} current={id} color={colors.primaryColor} />
             <FillButton text="Contact Us" color="bg-green" text_color="text-white" url="/contact" />
         </div>
     )

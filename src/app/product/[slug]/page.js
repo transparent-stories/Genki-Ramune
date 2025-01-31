@@ -10,7 +10,7 @@ import IngredientsSection from '@/components/Product/page/IngredientsSection';
 const getProductData = cache(async (slug) => {
     try {
         // Fetch product data from WooCommerce API
-        const product = await fetchFromApiWc(`/products`, { slug: slug, _fields: "id,name,description,short_description,images,meta_data" }, "wc");
+        const product = await fetchFromApiWc(`/products`, { slug: slug, _fields: "id,name,description,short_description,images,meta_data,tags" }, "wc");
         return product;
     } catch (error) {
         console.error(`Error fetching product data for slug: ${slug}`, error);
