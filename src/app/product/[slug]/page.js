@@ -1,4 +1,4 @@
-import { fetchFromApi } from '@/utils/api';
+import { fetchFromApiWc } from '@/utils/api';
 import { React, cache } from 'react';
 import Gallery from '@/components/Product/page/Gallery';
 import Description from '@/components/Product/page/Description';
@@ -10,7 +10,7 @@ import IngredientsSection from '@/components/Product/page/IngredientsSection';
 const getProductData = cache(async (slug) => {
     try {
         // Fetch product data from WooCommerce API
-        const product = await fetchFromApi(`/products`, { slug: slug, _fields: "id,name,description,short_description,images,meta_data" }, "wc");
+        const product = await fetchFromApiWc(`/products`, { slug: slug, _fields: "id,name,description,short_description,images,meta_data" }, "wc");
         return product;
     } catch (error) {
         console.error(`Error fetching product data for slug: ${slug}`, error);

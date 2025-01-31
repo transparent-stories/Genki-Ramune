@@ -1,18 +1,18 @@
 
 import Banner from '@/components/Home/Banner';
-import { fetchFromApi } from '@/utils/api';
+import { fetchFromApiWp } from '@/utils/api';
 import React, { cache } from 'react'
 import parse from 'html-react-parser';
 import Image from 'next/image';
 import AboutBanner from '@/components/About Page/AboutBanner';
 
-const queryParams = { _fields: "id,title,acf", acf_format: "standard", status: "publish" };
+const queryParams = { _fields: "id,title,acf", acf_format: "standard", status: "publish", id: '199' };
 
 // Server-side function to fetch product data
 const getPageData = cache(async (id = "199") => {
     try {
         // Fetch product data from WooCommerce API
-        const product = await fetchFromApi(`/pages/${id}`, queryParams, "wp");
+        const product = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
         return product;
     } catch (error) {
         console.error(`Error fetching page data for distributor`, error);

@@ -1,7 +1,7 @@
 import ProductList from "@/components/Home/ProductList";
 import { LoadingState, ErrorState, EmptyState } from "@/components/Global/States";
 import Banner from "@/components/Home/Banner";
-import { fetchFromApi } from "@/utils/api";
+import { fetchFromApiWp } from "@/utils/api";
 import BrandMetrics from "@/components/Home/BrandMetrics";
 import VideoFeed from "@/components/Home/VideoFeed";
 import defaults from "@/utils/defaults";
@@ -10,7 +10,7 @@ import BlogSection from "@/components/Home/BlogSection";
 async function getPageData(queryParams, id = "43") {
   try {
     // Fetch page data from WP API
-    const pageData = await fetchFromApi(`/pages/${id}`, queryParams, "wp");
+    const pageData = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
     return pageData;
   } catch (error) {
     console.error(`Error fetching page data`, error);

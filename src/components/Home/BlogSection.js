@@ -1,4 +1,4 @@
-import { fetchFromApi } from '@/utils/api';
+import { fetchFromApiWp } from '@/utils/api';
 import React from 'react'
 import { EmptyState } from '../Global/States';
 import PostCard from '../Blog Post/PostCard';
@@ -7,7 +7,7 @@ import FillButton from '../Global/Buttons/FillButton';
 async function getAllPostsData(query) {
     try {
         // Fetch product data from WooCommerce API
-        const posts = await fetchFromApi(`/posts`, query, "wp");
+        const posts = await fetchFromApiWp(`/posts`, query, "wp");
         return posts;
     } catch (error) {
         console.error(`Error fetching product data for slug: ${slug}`, error);
