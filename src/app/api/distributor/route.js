@@ -16,9 +16,20 @@ export async function POST(req) {
         // Email options
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: "notification@transparentstories.com", // Send to two emails
-            subject: "New Contact Form Submission",
-            text: `Salutation: ${data.salutation}\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nCompany: ${data.company}\nWebsite: ${data.website}\nMessage: ${data.message}`
+            to: "notification@transparentstories.com",
+            subject: "New Distributor Inquiry",
+            text: `
+                Name of Company: ${data.companyName}
+                Website: ${data.website || "N/A"}
+                Contact Person: ${data.contactName}
+                Email: ${data.email}
+                Designation: ${data.designation}
+                Role: ${data.role}
+                Territory: ${data.territory}
+                Shipping Address: ${data.shippingAddress}
+                LinkedIn: ${data.linkedin || "N/A"}
+                Distribution Plans: ${data.distributionPlans}
+            `
         };
 
         // Send Email

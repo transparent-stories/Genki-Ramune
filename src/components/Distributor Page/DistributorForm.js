@@ -11,11 +11,26 @@ const DistributorForm = ({ heading = "Ready to join us?" }) => {
         formState: { errors }, // Contains form validation errors
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
-    };
+    const onSubmit = async (data) => {
+        console.log(data)
+        try {
+            const response = await fetch('/api/distributor', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
 
-    console.log(watch()); // Logs the values of all fields (for debugging purposes)
+            if (response.ok) {
+                console.log("Email sent successfully");
+            } else {
+                console.error("Failed to send email");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
+    };
 
     return (
         <div className="flex flex-row justify-center pb-10 px-8 sm:p-20 text-left">
