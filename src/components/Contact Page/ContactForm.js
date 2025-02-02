@@ -11,11 +11,27 @@ const ContactForm = ({ heading = "Contact Us" }) => {
         formState: { errors }, // Contains form validation errors
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        console.log(data)
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                console.log("Email sent successfully");
+            } else {
+                console.error("Failed to send email");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
     };
 
-    console.log(watch()); // Logs the values of all fields (for debugging purposes)
 
     return (
         <div className="flex flex-row justify-center sm:pb-0 px-8 sm:p-20 text-left">

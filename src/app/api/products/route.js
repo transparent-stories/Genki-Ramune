@@ -2,12 +2,10 @@ import { NextResponse } from 'next/server';
 import axios from 'axios';
 
 export async function GET(req) {
-    console.log(req.url)
     const { searchParams } = new URL(req.url);
 
     // Extract all query parameters from the request URL
     const params = Object.fromEntries(searchParams.entries());
-    console.log("Received params:", params);  // Debugging
 
     try {
         // Pass all params (including status, tag, etc.) to the WooCommerce API

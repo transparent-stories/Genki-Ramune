@@ -12,8 +12,6 @@ const SwatchTabs = ({ currentTag, current, color }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
     const [activeTag, setActiveTag] = useState(currentTag.toString()); // Initial active tag
 
-    console.log(activeTag)
-
     // Update query params only when the active tag changes
     useEffect(() => {
         setQueryParams((prevParams) => ({
@@ -21,7 +19,6 @@ const SwatchTabs = ({ currentTag, current, color }) => {
             tag: activeTag,
         }));
 
-        console.log("Updated products:", allProducts);
     }, [activeTag, allProducts, setQueryParams]);
 
     const handleTabSwitch = (tag) => {

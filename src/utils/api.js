@@ -21,9 +21,6 @@ const apiWC = axios.create({
 export const fetchFromApi = async (endpoint, params = {}, version = "wc") => {
     let apiUrl = `/api/products`; // This will trigger the correct API route in Next.js
 
-    console.log("Fetching from:", apiUrl);
-    console.log("With params:", params);
-
     try {
         const { data } = await axios.get(apiUrl, { params });
         return data;
