@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from 'framer-motion';
 
@@ -7,12 +7,13 @@ const ContactForm = ({ heading = "Contact Us" }) => {
     const {
         register, // Registers input fields
         handleSubmit, // Wraps the form submit function with validation
-        watch, // Watches the values of specific input fields
+        reset, // Watches the values of specific input fields
         formState: { errors }, // Contains form validation errors
     } = useForm();
 
+    const [message, setMessage] = useState(null);
+
     const onSubmit = async (data) => {
-        console.log(data)
         try {
             const response = await fetch('/api/contact', {
                 method: 'POST',
@@ -24,11 +25,15 @@ const ContactForm = ({ heading = "Contact Us" }) => {
 
             if (response.ok) {
                 console.log("Email sent successfully");
+                setMessage({ type: "success", text: "✅ Form submitted successfully!" });
+                reset(); // Clears the form
             } else {
                 console.error("Failed to send email");
+                setMessage({ type: "error", text: "Failed to submit the form. Please try again." });
             }
         } catch (error) {
-            console.error("Error submitting form:", error);
+            // console.error("Error submitting form:", error);
+            setMessage({ type: "error", text: "Something went wrong. Please check your connection and try again." });
         }
     };
 
@@ -140,17 +145,29 @@ const ContactForm = ({ heading = "Contact Us" }) => {
                 {/* Submit Button */}
                 <div className="flex justify-center">
                     <motion.div
-                        className="h-12 min-w-52 my-8 px-8 cursor-pointer rounded-[50px] bg-green flex justify-center items-center"
+                        className={`h-12 min-w-52 my-8 px-8 cursor-pointer rounded-[50px] ${message?.type === "error" ? "bg-red" : "bg-green"} flex justify-center items-center`}
                         whileHover={{ scale: 1.1 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                         onClick={handleSubmit(onSubmit)} // Trigger form submission
                     >
                         <span className="text-sm sm:text-base text-white lg:text-lg font-medium">
-                            Submit
+                            {message ? message.text : "Submit"}
                         </span>
                     </motion.div>
                 </div>
 
+                <div className="flex justify-center">
+                    {message && (
+                        <span
+                            className={`text-sm sm:text-base lg:text-lg font-medium ${message.type === "error" ? "text-red" : "text-green"
+                                }`}
+                        >
+                            {message.type === "error"
+                                ? "Facing an error? Please reach out to us at info@nizona.co"
+                                : "We'll soon reach out to you via your given email address"}
+                        </span>
+                    )}
+                </div>
             </form>
         </div>
     );

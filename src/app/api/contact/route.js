@@ -16,7 +16,7 @@ export async function POST(req) {
         // Email options
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: "notification@transparentstories.com", // Send to two emails
+            to: ["info@nizona.co", "meet@genkiramune.com"], // Send to two emails
             subject: "New Contact Form Submission",
             text: `Salutation: ${data.salutation}\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nCompany: ${data.company}\nWebsite: ${data.website}\nMessage: ${data.message}`
         };

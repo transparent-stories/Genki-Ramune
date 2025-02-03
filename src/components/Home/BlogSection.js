@@ -24,7 +24,7 @@ const BlogSection = async ({ queryParams }) => {
     return (
         <div className="py-20 px-0 sm:p-20 text-center min-h-screen flex flex-col justify-center">
             <div className='mb-10 mx-8'>
-                <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">The Genki Ramune Stories</h1>
+                <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="fade">The Genki Ramune Stories</h1>
                 <p className="font-extralight text-base mb-8" data-aos="fade-in-left">Elevating Ramune, One Story at a Time</p>
             </div>
             <div className="blog-list flex flex-wrap justify-center gap-8 mt-12 mb-4">

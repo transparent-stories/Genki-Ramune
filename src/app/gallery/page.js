@@ -108,7 +108,7 @@ const page = async () => {
 const Section1 = ({ heading, social_posts }) => {
     return (
         <div className='pt-10 pb-0 m-10 sm:my-5 sm:mx-20 text-center'>
-            <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-green" data-aos="zoom-in-up">{heading}</h1>
+            <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-green" data-aos="fade">{heading}</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
                 {social_posts.map((post, idx) => (
                     <Card key={idx} {...post} />
@@ -160,7 +160,7 @@ const Section2 = ({ heading, social_posts }) => {
             </svg>
 
 
-            <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-white" data-aos="zoom-in-up">{heading}</h1>
+            <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-white" data-aos="fade">{heading}</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
                 {social_posts.map((post, idx) => (
                     <Card key={idx} {...post} />

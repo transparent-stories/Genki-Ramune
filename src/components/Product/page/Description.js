@@ -21,10 +21,9 @@ const Description = ({ product, colors }) => {
             <div className='mb-5'>
                 <h1
                     className="text-3xl sm:text-5xl font-extrabold mb-4 text-green"
-                    data-aos="zoom-in-right"
                     style={{ color: colors.primaryColor }}
                 >{name}</h1>
-                <div className="mb-4 text-black" data-aos="zoom-in-right">
+                <div className="mb-4 text-sm text-black">
                     {shortDescription ? parse(shortDescription) : "No description available."}
                 </div>
             </div>
