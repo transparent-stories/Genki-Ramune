@@ -191,7 +191,7 @@ const Section3 = ({ heading, text, image }) => {
 
 
     return (
-        <section className="bg-cover bg-center sm:aspect-[16/9] overflow-hidden flex flex-col sm:flex-row">
+        <section className="bg-cover bg-center sm:aspect-[16/9] overflow-hidden flex flex-col sm:flex-row sm:px-20">
 
             <div className="inset-0 flex items-top px-8 lg:p-32 lg:w-2/3">
                 <div className="max-w-lg mt-20 flex flex-col text-black">

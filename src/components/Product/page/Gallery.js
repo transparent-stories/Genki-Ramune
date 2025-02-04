@@ -25,7 +25,7 @@ const Gallery = ({ images, colors }) => {
     };
 
     return (
-        <div className="my-4 md:basis-3/5 md:h-2/3 flex flex-row flex-wrap md:none">
+        <div className="my-0 md:basis-3/5 md:h-2/3 flex flex-row flex-wrap md:none">
             {/* Div main image and 3 usps */}
             <div className='grid grid-cols-4 grid-rows-3 gap-4 w-full'>
                 {/* Image 1 */}

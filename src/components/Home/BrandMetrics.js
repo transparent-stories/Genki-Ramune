@@ -5,9 +5,9 @@ import IconBlock from '../Global/IconBlock';
 
 const BrandMetrics = ({ title, subtitle, metrics }) => {
     return (
-        <div className="py-20 px-8 sm:p-20 min-h-screen text-center flex flex-col justify-around bg-cream">
-            <div className='mb-10'>
-                <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="fade">{title}</h1>
+        <div className="py-20 px-8 sm:p-20 min-h-screen text-center flex flex-col justify-center bg-cream">
+            <div className='mb-16'>
+                <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="fade">{title}</h1>
                 <p className="font-extralight text-base mb-8" data-aos="fade">{subtitle}</p>
             </div>
 

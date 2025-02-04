@@ -22,9 +22,9 @@ const Header = () => {
                 <Image
                     src="/logo.png"
                     alt="Genki Ramune logo"
-                    width={120}
+                    width={100}
                     height={125}
-                    className="transition-transform translate-x-16 sm:translate-x-0 duration-500 transform hover:scale-110 fill-green"
+                    className="transition-transform translate-x-24 sm:translate-x-0 duration-500 transform hover:scale-110 fill-green"
                 />
             </Link>
 

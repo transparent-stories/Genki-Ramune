@@ -97,8 +97,8 @@ const ProductList = ({ title, subtitle, ...filterParams }) => {
     return (
         <>
             <div id="product-list-section" className="product-list py-20 text-center">
-                <div className='mb-10 mx-8'>
-                    <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">{title}</h1>
+                <div className='mb-16 mx-8'>
+                    <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{title}</h1>
                     <p className="font-extralight text-base mb-8" data-aos="fade-in-left">{subtitle}</p>
                 </div>
                 <div className="navigation-wrapper mb-5">

@@ -87,7 +87,7 @@ const page = async () => {
     return (
         <div className='bg-cream'>
             <Banner {...bannerProps} />
-            <div className='mt-20 mx-8 text-center flex flex-col items-center'>
+            <div className='mt-24 mb-32 mx-8 text-center flex flex-col items-center'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">{section_1_title}</h1>
                 <div className="font-extralight text-base text-justify sm:max-w-[50%]" data-aos="fade-in-left">
                     {section_1_text ? parse(section_1_text) : "No description available."}
