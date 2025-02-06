@@ -124,7 +124,7 @@ const Section1 = ({ heading, social_posts }) => {
 const Section2 = ({ heading, social_posts }) => {
 
     return (
-        <div className='relative pt-32 pb-10 p-10 sm:px-20 text-center bg-[#5b955a]'>
+        <div className='relative pt-32 pb-10 p-10 sm:px-20 text-center bg-[#5b955a]' id='stories'>
 
             <div className="absolute right-10 top-[-60px] w-20 h-auto z-10">
                 <svg

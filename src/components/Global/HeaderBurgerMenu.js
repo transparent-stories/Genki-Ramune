@@ -55,7 +55,7 @@ const HeaderBurgerMenu = () => {
                 initial={{ height: 0 }}
                 animate={{ height: isMenuOpen ? 'auto' : 0 }}
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
-                className="absolute top-16 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
+                className="absolute top-12 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
             >
                 <nav className="flex flex-col gap-6">
                     <Link href="/about-us" onClick={() => navigateTo()} className="hover:underline pt-6">
@@ -70,7 +70,7 @@ const HeaderBurgerMenu = () => {
                     <Link href="/gallery" onClick={() => navigateTo()} className="hover:underline">
                         Gallery
                     </Link>
-                    <Link href="/distributor" onClick={() => navigateTo()} className="hover:underline">
+                    <Link href="/gallery/#stories" onClick={() => navigateTo()} className="hover:underline">
                         Stories
                     </Link>
                     <Link href="/contact" onClick={() => navigateTo()} className="hover:underline pb-6">

@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
         return acc;
     }, {});
 
-    const secondaryImage = product?.images[1]?.src || 'https://placehold.co/600x800/orange/white';
+    const secondaryImage = product?.images[2]?.src || 'https://placehold.co/600x800/orange/white';
     const primaryImage = product?.images[0]?.src || 'https://placehold.co/600x800/orange/white';
 
     const [isHovered, setIsHovered] = useState(false);
@@ -39,7 +39,6 @@ const ProductCard = ({ product }) => {
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
             onClick={handleClick}
-        // data-aos="zoom-in-up"
         >
 
             {/* Background Change on Hover */}
@@ -47,7 +46,7 @@ const ProductCard = ({ product }) => {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${secondaryImage})`, aspectRatio: 1 }}
                 animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.6, ease: 'easeInOut' }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
             />
 
             {/* Circle */}
@@ -85,16 +84,14 @@ const ProductCard = ({ product }) => {
                     zIndex: 11,
                     paddingRight: '16px',
                     paddingLeft: '16px',
+                    paddingBottom: "20px",
+                    marginBottom: "20px",
+                    paddingTop: "65%",
                     clipPath: "polygon(100% 100%, 0% 100%, 0% 50%, 2% 48.97%, 4% 48.04%, 6% 47.31%, 8% 46.83%, 10% 46.67%, 12% 46.83%, 14% 47.31%, 16% 48.04%, 18% 48.97%, 20% 50%, 22% 51.03%, 24% 51.96%, 26% 52.69%, 28% 53.17%, 30% 53.33%, 32% 53.17%, 34% 52.69%, 36% 51.96%, 38% 51.03%, 40% 50%, 42% 48.97%, 44% 48.04%, 46% 47.31%, 48% 46.83%, 50% 46.67%, 52% 46.83%, 54% 47.31%, 56% 48.04%, 58% 48.97%, 60% 50%, 62% 51.03%, 64% 51.96%, 66% 52.69%, 68% 53.17%, 70% 53.33%, 72% 53.17%, 74% 52.69%, 76% 51.96%, 78% 51.03%, 80% 50%, 82% 48.97%, 84% 48.04%, 86% 47.31%, 88% 46.83%, 90% 46.67%, 92% 46.83%, 94% 47.31%, 96% 48.04%, 98% 48.97%, 100% 50%)"
                 }}
                 animate={{
-                    height: isHovered ? '80%' : '100%',
                     opacity: isHovered ? 1 : 0.9,
-                    backgroundColor: isHovered ? secondaryColor : 'rgba(0, 0, 0, 0)',
-                    paddingBottom: isHovered ? "3vw" : "20px",
-                    marginBottom: isHovered ? "0" : "20px",
-                    paddingTop: isHovered ? "80%" : "0px",
-                    // bottom: isHovered && 0
+                    backgroundColor: isHovered ? secondaryColor : "transparent",
                 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
@@ -111,7 +108,7 @@ const ProductCard = ({ product }) => {
                     }}
                     animate={{
                         opacity: isMobile || isHovered ? 1 : 0,
-                        height: isMobile || isHovered ? 'auto' : '0px'
+                        height: isMobile || isHovered ? 'max-content' : '0px'
                     }}
                     transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
@@ -126,10 +123,13 @@ const ProductCard = ({ product }) => {
                     {/* View Now Button */}
                     <motion.div
                         // href={`/product/${product.slug}`}
-                        className="relative text-black text-sm sm:mb-2 font-light transition-colors duration-300 hover:text-black underline underline-offset-4"
+                        className={`relative text-white text-xs py-1 px-4 sm:my-2 rounded-full font-light transition-colors duration-300`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.3 }}
+                        style={{
+                            backgroundColor: primaryColor
+                        }}
                     >
                         View Now
                     </motion.div>

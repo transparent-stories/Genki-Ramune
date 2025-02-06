@@ -16,7 +16,8 @@ const Gallery = ({ images, colors }) => {
         color: primaryColor,
     }
 
-    let imagesForGrid = images.slice(1)
+    let secondImage = images?.[1]
+    let imagesForGrid = images.slice(2)
 
     const gridColumnMap = {
         0: "1 / 3", // Span both columns
@@ -44,7 +45,7 @@ const Gallery = ({ images, colors }) => {
                 {/* USP1 */}
                 {
                     productIcons.map(({ icon: Icon, name }, idx) => {
-                        return <div key={idx} className="color-white p-2 sm:p-5 grid-col h-full flex items-center justify-center rounded-2xl animate-image-background"
+                        return <div key={idx} className="color-white p-0 sm:p-5 grid-col h-full flex items-center justify-center rounded-2xl animate-image-background"
                             style={imageBackground}
                         >
                             <Icon fill={primaryColor} />
@@ -61,6 +62,24 @@ const Gallery = ({ images, colors }) => {
                     '--scrollbar-track-color': secondaryColor,
                 }}
             >
+
+                {/* Second Image */}
+                <div
+                    // key={id}
+                    className={`rounded-2xl mb-2 overflow-hidden md:w-full h-[10em] sm:h-[13em] }`}
+                    style={{
+                        // flexBasis: "calc(50% - 8px)",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                    }}
+                >
+                    <img
+                        src={secondImage?.src || "https://placehold.co/1600x900"} // Replace with the actual image field
+                        alt={secondImage?.alt || 'Image'} // Fallback alt text
+                        className="object-cover w-full h-full aspect-[16/9]"
+                    />
+                </div>
+
                 {imagesForGrid.map((item, id) => (
                     <div
                         key={id}

@@ -31,7 +31,7 @@ const Header = () => {
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex gap-10">
                 <Link href="/gallery" className="hover:underline">Gallery</Link>
-                <Link href="/distributor" className="hover:underline">Stories</Link>
+                <Link href="gallery/#stories" className="hover:underline">Stories</Link>
                 <Link href="/contact" className="hover:underline">Contact Us</Link>
             </nav>
         </header>
