@@ -2,9 +2,6 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
-import animationData from '/public/hamburger-menu.json';
 
 const HeaderBurgerMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,12 +10,6 @@ const HeaderBurgerMenu = () => {
     useEffect(() => {
         setIsClient(true); // Ensures the component is rendered on the client side
     }, []);
-
-    const defaultOptions = {
-        loop: false,
-        autoplay: false,
-        animationData: animationData
-    };
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -37,17 +28,14 @@ const HeaderBurgerMenu = () => {
             {/* Burger Icon */}
             <button
                 onClick={toggleMenu}
+                id="menu-button"
                 className="cursor-pointer px-6"
+                data-menu-open={isMenuOpen ? "true" : "false"}
                 aria-label="Toggle menu"
             >
-                <Lottie
-                    options={defaultOptions}
-                    isClickToPauseDisabled={!isMenuOpen}
-                    // isStopped={!isMenuOpen}
-                    // isPaused={isMenuOpen}
-                    height={30}
-                    width={30}
-                />
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
 
             {/* Drawer Menu */}
@@ -55,7 +43,7 @@ const HeaderBurgerMenu = () => {
                 initial={{ height: 0 }}
                 animate={{ height: isMenuOpen ? 'auto' : 0 }}
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
-                className="absolute top-12 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
+                className="absolute top-18 px-6 left-0 w-[100vw] bg-cream shadow-lg overflow-hidden"
             >
                 <nav className="flex flex-col gap-6">
                     <Link href="/about-us" onClick={() => navigateTo()} className="hover:underline pt-6">

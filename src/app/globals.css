@@ -128,3 +128,35 @@ body::-webkit-scrollbar-thumb{
 .animate-image-background {
     animation: fadeImageBackground 0.7s ease-in-out;
 }
+
+/* Hamburger menu */
+
+#menu-button {
+ display: flex;
+ flex-direction:column;
+ padding-left: 3rem;
+ gap: 6px;
+ width: 4rem;
+ height: 4rem;
+ align-items: center;
+ justify-content: center;
+}
+
+#menu-button span {
+width: 35px;
+height: 4px;
+background-color: #0B680D;
+border-radius: 2px;
+}
+
+#menu-button[data-menu-open="true"] span:nth-child(1) {
+transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+
+#menu-button[data-menu-open="true"] span:nth-child(3) {
+transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+#menu-button[data-menu-open="true"] span:nth-child(2) {
+opacity: 0;
+}
