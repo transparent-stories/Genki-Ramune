@@ -45,7 +45,7 @@ const Gallery = ({ images, colors }) => {
                 {/* USP1 */}
                 {
                     productIcons.map(({ icon: Icon, name }, idx) => {
-                        return <div key={idx} className="color-white p-0 sm:p-5 grid-col h-full flex items-center justify-center rounded-2xl animate-image-background"
+                        return <div key={idx} className="color-white p-3 sm:p-5 grid-col h-full sm:text-lg text-base flex items-center justify-center rounded-2xl animate-image-background"
                             style={imageBackground}
                         >
                             <Icon fill={primaryColor} />
