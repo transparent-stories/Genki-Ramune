@@ -1,25 +1,68 @@
 import axios from 'axios';
 
-// Axios instance
-const apiWC = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_WC_API_BASE_URL,
-    params: {
-        consumer_key: process.env.NEXT_PUBLIC_WP_CONSUMER_KEY,
-        consumer_secret: process.env.NEXT_PUBLIC_WP_CONSUMER_SECRET,
-    },
-});
-
 const apiWP = axios.create({
     baseURL: process.env.NEXT_PUBLIC_WP_API_BASE_URL,
     params: {
         consumer_key: process.env.NEXT_PUBLIC_WP_CONSUMER_KEY,
         consumer_secret: process.env.NEXT_PUBLIC_WP_CONSUMER_SECRET,
     },
+    timeout: 10000, // 10 seconds timeout
 });
 
-// General API fetcher
+const apiWC = axios.create({
+    baseURL: process.env.WC_API_BASE_URL,
+    params: {
+        consumer_key: process.env.NEXT_PUBLIC_WP_CONSUMER_KEY,
+        consumer_secret: process.env.NEXT_PUBLIC_WP_CONSUMER_SECRET,
+    },
+    timeout: 10000, // 10 seconds timeout
+});
+
 export const fetchFromApi = async (endpoint, params = {}, version = "wc") => {
-    const api = version === "wp" ? apiWP : apiWC;
-    const { data } = await api.get(endpoint, { params });
-    return data;
+    let apiUrl = `/api/products`; // This will trigger the correct API route in Next.js
+
+    try {
+        const { data } = await axios.get(apiUrl, { params });
+        return data;
+    } catch (error) {
+        console.error(`[fetchFromApi] Error fetching from ${apiUrl}:`, error.message);
+        throw new Error("Error fetching data from API.");
+    }
+};
+
+
+export const fetchFromApiWp = async (endpoint, params = {}, version = "wc") => {
+    // Validate environment variables
+    if (!process.env.NEXT_PUBLIC_WP_API_BASE_URL) {
+        console.error("API base URLs are not defined in environment variables.");
+        throw new Error("API base URL is missing.");
+    }
+
+    const api = apiWP;
+
+    try {
+        const { data } = await api.get(endpoint, { params });
+        return data;
+    } catch (error) {
+        console.error(`[fetchFromApi] Error fetching from ${endpoint}`, error.message);
+        throw new Error("Error fetching data from API.");
+    }
+};
+
+export const fetchFromApiWc = async (endpoint, params = {}, version = "wc") => {
+    // Validate environment variables
+    if (!process.env.WC_API_BASE_URL && !process.env.NEXT_PUBLIC_WP_API_BASE_URL) {
+        console.error("API base URLs are not defined in environment variables.");
+        throw new Error("API base URL is missing.");
+    }
+
+    const api = apiWC;
+
+    try {
+        const { data } = await api.get(endpoint, { params });
+        return data;
+    } catch (error) {
+        console.error(`[fetchFromApi] Error fetching from ${endpoint}`, error.message);
+        throw new Error("Error fetching data from API.");
+    }
 };

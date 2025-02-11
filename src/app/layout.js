@@ -1,5 +1,18 @@
+import { AOSInit } from '@/utils/aos';
 import '../app/globals.css';
-import Providers from './providers'; // Import the new client component
+import Providers from './providers';
+import Link from 'next/link';
+import { Sora } from 'next/font/google'
+import _customFont from '@/app/font'
+import Footer from '@/components/Global/Footer';
+import Header from '@/components/Global/Header';
+
+const _sora = Sora({
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+  display: 'swap',
+  varibale: '--font-sora'
+})
 
 export const metadata = {
   title: 'Genki Ramune',
@@ -7,17 +20,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
+      <AOSInit />
+      <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet" />
+      </head>
       <body>
         <Providers>
-          <header className="p-4 bg-blue-500 text-white">
-            <h1>Genki Ramune</h1>
-          </header>
+          <Header />
           <main>{children}</main>
-          <footer className="p-4 bg-gray-800 text-white">
-            <p>© 2024 Genki Ramune</p>
-          </footer>
+          <Footer />
         </Providers>
       </body>
     </html>

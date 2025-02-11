@@ -1,42 +1,117 @@
-'use client';
-
 import ProductList from "@/components/Home/ProductList";
-import { EmptyState, ErrorState, LoadingState } from "@/components/Global/States";
-import { usePages } from "@/context/PageContext";
-import { useEffect } from "react";
+import { LoadingState, ErrorState, EmptyState } from "@/components/Global/States";
 import Banner from "@/components/Home/Banner";
+import { fetchFromApiWp } from "@/utils/api";
+import BrandMetrics from "@/components/Home/BrandMetrics";
+import VideoFeed from "@/components/Home/VideoFeed";
+import defaults from "@/utils/defaults";
+import BlogSection from "@/components/Home/BlogSection";
 
-export default function Home() {
-  const id = "43"
-  const { pageData, isLoading, error, setQueryParams } = usePages();
+async function getPageData(queryParams, id = "43") {
+  try {
+    // Fetch page data from WP API
+    const pageData = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
+    return pageData;
+  } catch (error) {
+    console.error(`Error fetching page data`, error);
+    throw new Error("page not found");
+  }
+}
 
-  useEffect(() => {
-    setQueryParams((prev) => ({ ...prev, id: id, _fields: "acf", acf_format: "standard" }));
-  }, [setQueryParams]);
+export async function generateMetadata() {
 
-  if (isLoading) return <LoadingState height="100vh" />
-  if (error) return <ErrorState message="Error fetching page." height="100vh" />
-  if (!pageData?.acf) return <EmptyState message="Page Not Found" height="100vh" />
+  try {
+    const title = "Genki Ramune Soda or japan ramune is cool fun drink from japan";
+    const description = "Japanese carbonated drinks are available in exciting fruit flavous and healthy ingredients. Turmeric ramune, Matcha ramune and Multivitamin ramune.";
 
-  const { banner_button, banner_heading, banner_image_desktop, banner_image_mobile, banner_text, banner_url } = pageData?.acf
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+      },
+    };
+  } catch (error) {
+    console.error(`Error generating metadata for home`, error);
+    return {
+      title: "Page Not Found",
+      description: "The page you are looking for could not be found.",
+    };
+  }
+}
 
-  const bannerProps = {
-    heading: banner_heading,
-    text: banner_text,
-    button: banner_button,
-    desktopImage: banner_image_desktop,
-    mobileImage: banner_image_mobile,
-    url: banner_url,
-  };
+export default async function Home() {
+  // const id = "43"; // Default to ID 43
+  const queryParams = { _fields: "acf", acf_format: "standard", status: "publish" };
 
-  const productListProps = {
-    tag: "16",
-  };
+  try {
+    const pageData = await getPageData(queryParams);
 
-  return (
-    <>
-      <Banner {...bannerProps} />
-      <ProductList {...productListProps} />
-    </>
-  );
+    // Validate `acf` data existence
+    if (!pageData?.acf) {
+      return <EmptyState message="Page Not Found" height="100vh" />;
+    }
+
+    const {
+      banner_button = null,
+      banner_heading = "Default Heading",
+      banner_image_desktop = defaults.images.desktop,
+      banner_image_mobile = defaults.images.mobile,
+      banner_text = "",
+      banner_url = "#",
+      product_list_title = "Products List Title",
+      product_list_subtitle = "",
+      brand_metrics_title = "Brand Milestones & Metrics",
+      brand_metrics_subtitle = "",
+      brand_metrics = [],
+      video_title = "Videos",
+      video_subtitle = "",
+      videos_feed = [],
+    } = pageData?.acf;
+
+    const bannerProps = {
+      heading: banner_heading,
+      text: banner_text,
+      button: banner_button,
+      desktopImage: banner_image_desktop,
+      mobileImage: banner_image_mobile,
+      url: banner_url,
+    };
+
+    const productListProps = {
+      title: product_list_title,
+      subtitle: product_list_subtitle,
+      tag: "16", // Consider passing this dynamically
+    };
+
+    const brandMetricsProps = {
+      title: brand_metrics_title,
+      subtitle: brand_metrics_subtitle,
+      metrics: Array.isArray(brand_metrics) ? brand_metrics : [],
+    };
+
+    const videoFeedProps = {
+      title: video_title,
+      subtitle: video_subtitle,
+      videos: Array.isArray(videos_feed) ? videos_feed : [],
+    };
+
+    const blogSectionProps = {
+      queryParams: { orderBy: "date", per_page: 3, _embed: "" }
+    }
+
+    return (
+      <>
+        <Banner {...bannerProps} />
+        <ProductList {...productListProps} />
+        <BrandMetrics {...brandMetricsProps} />
+        <VideoFeed {...videoFeedProps} />
+        <BlogSection {...blogSectionProps} />
+      </>
+    );
+  } catch (error) {
+    console.error("Error fetching page data:", error.message || error);
+    return <ErrorState message="Error fetching page." height="100vh" />;
+  }
 }
