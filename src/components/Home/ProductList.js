@@ -1,23 +1,24 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useProducts } from '../../context/ProductContext';
+import { useProducts } from '@/context/ProductContext';
 import { useKeenSlider } from "keen-slider/react";
 import 'keen-slider/keen-slider.min.css';
-import ProductCard from '../ProductCard';
-import { EmptyState, ErrorState, LoadingState } from '../Global/States';
-import PaginatedDots from '../Global/PaginatedDots';
-import SliderArrows from '../Global/SliderArrows';
+import ProductCard from '@/components/Product/ProductCard';
+import { EmptyState, ErrorState, LoadingState } from '@/components/Global/States';
+import PaginatedDots from '@/components/Global/PaginatedDots';
+import SliderArrows from '@/components/Global/SliderArrows';
+import 'animate.css'
 
-const ProductList = (filterParams) => {
+const ProductList = ({ title, subtitle, ...filterParams }) => {
     const { allProducts, isLoading, error, setQueryParams } = useProducts();
 
     useEffect(() => {
         setQueryParams((prevParams) => ({
             ...prevParams,
-            ...filterParams,
+            ...filterParams
         }));
-    }, [filterParams, setQueryParams]);
+    }, [setQueryParams]);
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loaded, setLoaded] = useState(false);
@@ -27,7 +28,7 @@ const ProductList = (filterParams) => {
             loop: true,
             slides: {
                 origin: "center",
-                perView: 5,
+                perView: 4.5,
                 spacing: 25,
             },
             created() {
@@ -40,13 +41,15 @@ const ProductList = (filterParams) => {
             breakpoints: {
                 "(max-width: 1024px)": {
                     slides: {
-                        perView: 4,
+                        origin: "center",
+                        perView: 3.5,
                         spacing: 15,
                     },
                 },
                 "(max-width: 768px)": {
                     slides: {
-                        perView: 2,
+                        origin: "center",
+                        perView: 1.5,
                         spacing: 15,
                     },
                 },
@@ -87,42 +90,48 @@ const ProductList = (filterParams) => {
         ]
     );
 
-    if (isLoading) return <LoadingState />
-    if (error) return <ErrorState />
-    if (!allProducts || allProducts.length === 0) return <EmptyState />
+    if (isLoading) return <LoadingState height="50vh" />
+    if (error) return <ErrorState message="Error fetching product." height="50vh" />
+    if (!allProducts || allProducts.length === 0) return <EmptyState message="No Products Found" height="50vh" />
 
     return (
-        <div className="product-list">
-            <h2 className="text-2xl font-bold mb-4">Products</h2>
-            <div className="navigation-wrapper">
-                <div ref={sliderRef} className="keen-slider">
-                    {allProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+        <>
+            <div id="product-list-section" className="product-list py-20 text-center">
+                <div className='mb-16 mx-8'>
+                    <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{title}</h1>
+                    <p className="font-extralight text-base mb-8" data-aos="fade-in-left">{subtitle}</p>
                 </div>
-                {loaded && instanceRef.current && (
-                    <>
-                        <SliderArrows
-                            direction='left'
-                            onClick={(e) =>
-                                e.stopPropagation() || instanceRef.current?.prev()
-                            }
-                            disabled={currentSlide === 0}
-                        />
-                        <SliderArrows
-                            onClick={(e) =>
-                                e.stopPropagation() || instanceRef.current?.next()
-                            }
-                            disabled={
-                                currentSlide ===
-                                instanceRef.current.track.details.slides.length - 1
-                            }
-                        />
-                    </>
-                )}
+                <div className="navigation-wrapper mb-5">
+                    <div ref={sliderRef} className="keen-slider">
+                        {allProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                    {loaded && instanceRef.current && (
+                        <>
+                            <SliderArrows
+                                direction='left'
+                                onClick={(e) =>
+                                    e.stopPropagation() || instanceRef.current?.prev()
+                                }
+                                disabled={currentSlide === 0}
+                            />
+                            <SliderArrows
+                                onClick={(e) =>
+                                    e.stopPropagation() || instanceRef.current?.next()
+                                }
+                                disabled={
+                                    currentSlide ===
+                                    instanceRef.current.track.details.slides.length - 1
+                                }
+                            />
+                        </>
+                    )}
+                </div>
+                {loaded && instanceRef.current && <PaginatedDots currentSlide={currentSlide} instanceRef={instanceRef} />}
             </div>
-            {loaded && instanceRef.current && <PaginatedDots currentSlide={currentSlide} instanceRef={instanceRef} />}
-        </div>
+        </>
+
     );
 };
 
