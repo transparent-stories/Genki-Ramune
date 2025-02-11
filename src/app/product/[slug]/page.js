@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
         }
 
         const title = product.name || "Product";
-        const description = product.short_description || "Product details";
+        const description = product.short_description?.slice(3, -4) || "Product details";
         const image = product.images?.[0]?.src || "https://placehold.co/400x600";
 
         return {

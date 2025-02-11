@@ -18,6 +18,29 @@ async function getPageData(queryParams, id = "43") {
   }
 }
 
+export async function generateMetadata() {
+
+  try {
+    const title = "Genki Ramune Soda or japan ramune is cool fun drink from japan";
+    const description = "Japanese carbonated drinks are available in exciting fruit flavous and healthy ingredients. Turmeric ramune, Matcha ramune and Multivitamin ramune.";
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+      },
+    };
+  } catch (error) {
+    console.error(`Error generating metadata for home`, error);
+    return {
+      title: "Page Not Found",
+      description: "The page you are looking for could not be found.",
+    };
+  }
+}
+
 export default async function Home() {
   // const id = "43"; // Default to ID 43
   const queryParams = { _fields: "acf", acf_format: "standard", status: "publish" };
