@@ -109,11 +109,16 @@ const Section1 = ({ heading, social_posts }) => {
     return (
         <div className='pt-10 pb-0 m-10 sm:my-5 sm:mx-20 text-center'>
             <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-green" data-aos="fade">{heading}</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+
+            {/* Scrollable Container */}
+            <div className="flex relative flex-nowrap overflow-x-scroll snap-x snap-mandatory space-x-4 pb-10">
                 {social_posts.map((post, idx) => (
-                    <Card key={idx} {...post} />
+                    <div key={idx} className="snap-center shrink-0 w-[80%] sm:w-[30%]">
+                        <Card {...post} />
+                    </div>
                 ))}
             </div>
+
             <div className='flex justify-center items-center'>
                 <FillButton text="See More" color="bg-green" text_color="text-white" url="https://www.instagram.com/genkiramune_japan/" />
             </div>
@@ -161,11 +166,16 @@ const Section2 = ({ heading, social_posts }) => {
 
 
             <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-white" data-aos="fade">{heading}</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+
+            {/* Scrollable Container */}
+            <div className="flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-10">
                 {social_posts.map((post, idx) => (
-                    <Card key={idx} {...post} />
+                    <div key={idx} className="snap-center shrink-0 w-[80%] sm:w-[30%]">
+                        <Card {...post} />
+                    </div>
                 ))}
             </div>
+
             <div className='flex justify-center items-center'>
                 <FillButton text="See More" color="bg-white" text_color="text-green" url="https://www.instagram.com/genkiramune_japan/" />
             </div>
