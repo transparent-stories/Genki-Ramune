@@ -8,6 +8,8 @@ const NostalgicTaste = (props) => (
         xmlns="http://www.w3.org/2000/svg"
         xmlSpace="preserve"
         viewBox="0 0 150 150"
+        width="4em"
+        height="auto"
         aria-label="Nostalgic Taste"
         {...props}
     >
@@ -40,6 +42,8 @@ const BoldFlavour = (props) => (
         xmlSpace="preserve"
         viewBox="0 0 150 150"
         aria-label="Bold Flavour"
+        width="4em"
+        height="auto"
         {...props}
     >
         <g transform="translate(-20, 0)">
@@ -73,6 +77,8 @@ const RefreshingFizz = (props) => (
         xmlns="http://www.w3.org/2000/svg"
         xmlSpace="preserve"
         viewBox="0 0 150 150"
+        width="4em"
+        height="auto"
         aria-label="Refreshing Fizz"
         {...props}
     >

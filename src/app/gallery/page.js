@@ -96,7 +96,7 @@ const page = async () => {
 
     return (
         <div className='bg-cream'>
-            <Banner {...bannerProps} />
+            {/* <Banner {...bannerProps} /> */}
             <Section1 {...section1Props} />
             <Section2 {...section2Props} />
             <Section3 {...section3Props} />
@@ -107,7 +107,7 @@ const page = async () => {
 
 const Section1 = ({ heading, social_posts }) => {
     return (
-        <div className='pt-10 pb-0 m-10 sm:my-5 sm:mx-20 text-center'>
+        <div className='py-24 pb-0 m-10 sm:my-0 sm:mx-20 text-center bg-cream'>
             <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 sm:mb-20 text-green" data-aos="fade">{heading}</h1>
 
             {/* Scrollable Container */}
@@ -203,7 +203,7 @@ const Section3 = ({ heading, text, image }) => {
     return (
         <section className="bg-cover bg-center sm:aspect-[16/9] overflow-hidden flex flex-col sm:flex-row sm:px-20">
 
-            <div className="inset-0 flex items-top px-8 lg:p-32 lg:w-2/3">
+            <div className="inset-0 flex items-top px-8 lg:py-32 lg:w-2/3">
                 <div className="max-w-lg mt-20 flex flex-col text-black">
                     <h1 className="text-green text-5xl font-bold sm:text-7xl mb-10">{heading}</h1>
                     {text ? parse(text) : "No description available."}

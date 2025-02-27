@@ -51,7 +51,7 @@ const ProductCard = ({ product }) => {
 
             {/* Circle */}
             <motion.div
-                className="absolute sm:w-52 sm:h-52 w-52 h-52 mt-[-10%] sm:mt-0"
+                className="absolute sm:w-52 sm:h-52 w-52 h-52 mt-[-25%] sm:mt-0"
                 style={{
                     backgroundColor: primaryColor,
                     borderRadius: '50%',
@@ -69,7 +69,7 @@ const ProductCard = ({ product }) => {
             <motion.img
                 src={primaryImage}
                 alt={product.name}
-                className="sm:w-72 sm:h-72 w-64 h-64 object-contain z-10 lg:mt-[-10%] mt-[-20%]"
+                className="sm:w-72 sm:h-72 w-56 h-56 object-contain z-10 lg:mt-[-10%] mt-[-45%]"
                 animate={{
                     opacity: isHovered ? 0 : 1,
                 }}

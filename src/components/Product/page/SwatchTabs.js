@@ -132,7 +132,7 @@ const Swatch = ({ id, name, color, current, url, img }) => {
                     </div>
 
                     {/* Swatch Name */}
-                    <div className="text-gray-800 font-normal text-xs px-5 w-full">{name}</div>
+                    <div className="text-gray-800 font-normal text-[10px] sm:text-xs pl-2 w-full"><p>{name}</p></div>
                 </div>
             </InteractiveSection>
         </motion.li>

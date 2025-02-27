@@ -66,7 +66,7 @@ const Gallery = ({ images, colors }) => {
                 {/* Second Image */}
                 <div
                     // key={id}
-                    className={`rounded-2xl mb-2 overflow-hidden md:w-full aspect-[19.2/10.8] h-[10em] sm:h-[16em] }`}
+                    className={`rounded-2xl mb-2 overflow-hidden w-auto md:w-full aspect-[19.2/10.8] h-[10em] sm:h-auto }`}
                     style={{
                         // flexBasis: "calc(50% - 8px)",
                         flexGrow: 0,
@@ -83,7 +83,7 @@ const Gallery = ({ images, colors }) => {
                 {imagesForGrid.map((item, id) => (
                     <div
                         key={id}
-                        className={`rounded-2xl mb-2 overflow-hidden aspect-square h-[10em] sm:h-[13em] }`}
+                        className={`rounded-2xl mb-2 overflow-hidden aspect-square h-auto }`}
                         style={{
                             flexBasis: "calc(50% - 8px)",
                             flexGrow: 0,
