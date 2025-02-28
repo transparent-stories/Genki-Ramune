@@ -43,8 +43,8 @@ export const fetchFromApiWp = async (endpoint, params = {}, version = "wc") => {
     try {
         const { data, headers } = await api.get(endpoint, { params });
 
-        const totalRecords = headers['x-wp-total'];  // Total number of records
-        const totalPages = headers['x-wp-totalpages']; // Total number of pages
+        const totalRecords = headers?.['x-wp-total'] || '0';
+        const totalPages = headers?.['x-wp-totalpages'] || '1';
 
         const completeData = {
             data,

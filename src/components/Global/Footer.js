@@ -28,7 +28,7 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li><Link href='/about-us'>About Us</Link></li>
                             <li><Link href='/gallery'>Gallery</Link></li>
-                            {/* <li><Link href='/blog'>Blog</Link></li> */}
+                            <li><Link href='/posts'>Blog</Link></li>
                         </ul>
                     </div>
 
