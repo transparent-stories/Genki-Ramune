@@ -41,8 +41,19 @@ export const fetchFromApiWp = async (endpoint, params = {}, version = "wc") => {
     const api = apiWP;
 
     try {
-        const { data } = await api.get(endpoint, { params });
-        return data;
+        const { data, headers } = await api.get(endpoint, { params });
+
+        const totalRecords = headers['x-wp-total'];  // Total number of records
+        const totalPages = headers['x-wp-totalpages']; // Total number of pages
+
+        const completeData = {
+            data,
+            headers: {
+                totalRecords,
+                totalPages
+            }
+        };
+        return completeData;
     } catch (error) {
         console.error(`[fetchFromApi] Error fetching from ${endpoint}`, error.message);
         throw new Error("Error fetching data from API.");

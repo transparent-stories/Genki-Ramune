@@ -11,7 +11,7 @@ async function getPageData(queryParams, id = "43") {
   try {
     // Fetch page data from WP API
     const pageData = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
-    return pageData;
+    return pageData?.data;
   } catch (error) {
     console.error(`Error fetching page data`, error);
     throw new Error("page not found");

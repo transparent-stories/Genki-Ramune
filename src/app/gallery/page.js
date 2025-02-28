@@ -15,7 +15,7 @@ const getPageData = cache(async (id = "267") => {
     try {
         // Fetch product data from WooCommerce API
         const product = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
-        return product;
+        return product?.data;
     } catch (error) {
         console.error(`Error fetching page data for distributor`, error);
         throw new Error("page not found");
