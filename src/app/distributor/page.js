@@ -14,7 +14,7 @@ const getPageData = cache(async (id = "161") => {
     try {
         // Fetch product data from WooCommerce API
         const product = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
-        return product;
+        return product?.data;
     } catch (error) {
         console.error(`Error fetching page data for distributor`, error);
         throw new Error("page not found");
@@ -93,8 +93,8 @@ const page = async () => {
 
     return (
         <div>
-            <Banner {...bannerProps} />
-            <div className='mb-24 mt-24 mx-4 text-center flex flex-col items-center min-h-[40vh] justify-center'>
+            {/* <Banner {...bannerProps} /> */}
+            <div className='mb-24 py-24 mx-4 text-center flex flex-col items-center min-h-[40vh] justify-center'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">{section_1_title}</h1>
                 <div className="font-extralight text-base text-justify sm:max-w-[50%]" data-aos="fade-in-left">
                     {section_1_text ? parse(section_1_text) : "No description available."}
@@ -117,20 +117,20 @@ const DistributorList = ({ heading, distributor_list }) => {
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 text-green" data-aos="zoom-in-up">{heading}</h1>
             </div>
 
-            <div className='flex flex-col md:w-1/2'>
+            <div className='flex flex-col mx-10 md:w-1/2'>
                 {distributor_list.map((distributor, idx) => (
                     <div className='flex justify-center items-center gap-10 md:gap-20 h-[20%]' key={idx}>
-                        <picture className='object-contain mb-4 w-1/2 ' data-aos="fade-in-left">
+                        <picture className='object-contain mb-4 w-[35vw]' data-aos="fade-in-left">
                             <Image
                                 src={distributor.icon}
                                 alt={heading}
-                                width={1920}
+                                width={1080}
                                 height={1080}
-                                className="h-auto"
+                                // className="h-auto"
                                 priority
                             />
                         </picture>
-                        <div className="mb-4 w-[70%] text-xs md:text-sm font-thin text-gray-600" data-aos="fade-in-left">
+                        <div className="mb-4 w-[50vw] text-xs md:text-sm font-thin text-gray-600" data-aos="fade-in-left">
                             {distributor.content ? parse(distributor.content) : "No description available."}
                         </div>
                     </div>

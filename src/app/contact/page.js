@@ -13,7 +13,7 @@ const getPageData = cache(async (id = "231") => {
     try {
         // Fetch product data from WooCommerce API
         const product = await fetchFromApiWp(`/pages/${id}`, queryParams, "wp");
-        return product;
+        return product?.data;
     } catch (error) {
         console.error(`Error fetching page data for distributor`, error);
         throw new Error("page not found");
@@ -66,7 +66,7 @@ const page = async () => {
         }
     } = page
 
-    const bannerProps = {
+    const _bannerProps = {
         heading: "",
         text: "",
         button: undefined,
@@ -84,8 +84,8 @@ const page = async () => {
 
     return (
         <div className='bg-cream'>
-            <Banner {...bannerProps} />
-            <div className='my-20 mx-4 text-center flex flex-col items-center'>
+            {/* <Banner {...bannerProps} /> */}
+            <div className='py-20 mx-4 text-center flex flex-col items-center'>
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-10 text-green" data-aos="zoom-in-up">{section_1_title}</h1>
                 <div className="font-extralight text-base sm:max-w-[50%]" data-aos="fade-in-left">
                     {section_1_text ? parse(section_1_text) : "No description available."}
